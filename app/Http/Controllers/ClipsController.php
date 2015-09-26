@@ -13,7 +13,8 @@ class ClipsController extends Controller
          */
         $gamer = Gamer::with([
             'clips' => function ($query) {
-                $query->orderBy('created_at', 'desc');
+                $query->where('expired', '!=', true)
+                      ->orderBy('created_at', 'desc');
             },
             'clips.game'
         ])->whereGamertag($gamertag)->first();
