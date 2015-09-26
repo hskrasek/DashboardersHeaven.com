@@ -2,6 +2,7 @@
 
 namespace DashboardersHeaven\Console\Commands;
 
+use Carbon\Carbon;
 use DashboardersHeaven\Clip;
 use DashboardersHeaven\Gamer;
 use GuzzleHttp\Client;
@@ -79,23 +80,33 @@ class UpdateGamersClipsCommand extends Command
 
     private function extractClipData($data)
     {
-        return [
+        $clipData = [
             'clip_id'         => data_get($data, 'gameClipId'),
             'title_id'        => data_get($data, 'titleId'),
             'name'            => data_get($data, 'clipName'),
             'xuid'            => data_get($data, 'xuid'),
             'thumbnail_small' => data_get($data, 'thumbnails.0.uri'),
             'thumbnail_large' => data_get($data, 'thumbnails.1.uri'),
-            'url'             => $this->getClipUrl(data_get($data, 'gameClipUris')),
+            'url'             => data_get($clip = $this->getClipUrl(data_get($data, 'gameClipUris')), 'uri'),
             'saved'           => (boolean) data_get($data, 'savedByUser'),
             'recorded_at'     => data_get($data, 'dateRecorded'),
+            'expired'         => false,
         ];
+
+        $now       = Carbon::now();
+        $expiresAt = Carbon::parse(data_get($clip, 'expiration'));
+
+        if ($expiresAt->lt($now)) {
+            $clipData['expired'] = true;
+        }
+
+        return $clipData;
     }
 
     private function getClipUrl($uris)
     {
         $downloadUri = array_reduce($uris, function ($inital, $uri) {
-            return ($uri->uriType == "Download") ? $uri->uri : null;
+            return ($uri->uriType == "Download") ? $uri : null;
         });
 
         return $downloadUri;

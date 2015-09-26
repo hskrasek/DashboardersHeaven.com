@@ -44,7 +44,8 @@ class Clip extends Model
         'thumbnail_large',
         'url',
         'saved',
-        'recorded_at'
+        'recorded_at',
+        'expired'
     ];
 
     /**
