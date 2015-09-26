@@ -10,7 +10,12 @@ class ClipsController extends Controller
         /**
          * @var Gamer $gamer
          */
-        $gamer = Gamer::with('clips', 'clips.game')->whereGamertag($gamertag)->first();
+        $gamer = Gamer::with([
+            'clips' => function ($query) {
+                $query->orderBy('created_at', 'desc');
+            },
+            'clips.game'
+        ])->whereGamertag($gamertag)->first();
         $clips = $gamer->clips()->paginate(16);
         if (!$gamer) {
             app()->abort(404); //TODO: Probably make this better, maybe?
