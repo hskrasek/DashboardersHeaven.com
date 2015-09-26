@@ -135,7 +135,9 @@ return [
         DashboardersHeaven\Providers\AppServiceProvider::class,
         DashboardersHeaven\Providers\EventServiceProvider::class,
         DashboardersHeaven\Providers\RouteServiceProvider::class,
-        DashboardersHeaven\Providers\XboxAPIServiceProvider::class
+        DashboardersHeaven\Providers\XboxAPIServiceProvider::class,
+
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
     /*
     |--------------------------------------------------------------------------

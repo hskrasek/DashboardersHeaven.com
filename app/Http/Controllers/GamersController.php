@@ -16,7 +16,7 @@ class GamersController extends Controller
     {
         $gamers = Gamer::with('games')->get();
 
-        return view('pages.gamer', compact('gamers'));
+        return view('pages.gamers', compact('gamers'));
     }
 
     /**
