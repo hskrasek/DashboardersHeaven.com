@@ -2,6 +2,7 @@
 
 use DashboardersHeaven\Clip;
 use DashboardersHeaven\Gamer;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ClipsController extends Controller
 {
@@ -16,7 +17,7 @@ class ClipsController extends Controller
             },
             'clips.game'
         ])->whereGamertag($gamertag)->first();
-        $clips = $gamer->clips()->paginate(16);
+        $clips = new LengthAwarePaginator($gamer->clips, $gamer->clips->count(), 16);
         if (!$gamer) {
             app()->abort(404); //TODO: Probably make this better, maybe?
         }
