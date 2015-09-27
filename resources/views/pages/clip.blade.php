@@ -1,5 +1,12 @@
 @extends('app')
 
+@section('head')
+    <meta property="og:title" content="@if(!empty($clip->name)) {{ $clip->name }} in @endif{{ $clip->game->title }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ route('clip', [$gamer->gamertag, $clip->clip_id]) }}" />
+    <meta property="og:image" content="{{ $clip->thumbnail_small }}" />
+@endsection
+
 @section('title')
 @if(!empty($clip->name)) {{ $clip->name }} in @endif{{ $clip->game->title }}
 @endsection

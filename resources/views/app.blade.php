@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="{{ elixir("css/all.css") }}">
     <link href="//vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">
+    @yield('head')
 </head>
 
 <body>
