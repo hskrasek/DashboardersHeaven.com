@@ -2,23 +2,19 @@
 
 use DashboardersHeaven\Clip;
 use DashboardersHeaven\Gamer;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Http\Request;
 
 class ClipsController extends Controller
 {
-    public function clips($gamertag)
+    public function clips(Request $request, $gamertag)
     {
         /**
          * @var Gamer $gamer
          */
-        $gamer = Gamer::with([
-            'clips' => function ($query) {
-                $query->where('expired', '!=', true)
-                      ->orderBy('created_at', 'desc');
-            },
-            'clips.game'
-        ])->whereGamertag($gamertag)->first();
-        $clips = new Paginator($gamer->clips, 16);
+        $gamer = Gamer::whereGamertag($gamertag)->first();
+        $clips = Clip::with('game')->whereHas('gamer', function ($query) use ($gamer) {
+            $query->where('xuid', '=', $gamer->xuid);
+        })->paginate(16);
         if (!$gamer) {
             app()->abort(404); //TODO: Probably make this better, maybe?
         }

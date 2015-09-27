@@ -57,4 +57,14 @@ class Clip extends Model
     {
         return $this->belongsTo('DashboardersHeaven\Game', 'title_id', 'title_id');
     }
+
+    /**
+     * Get all the gamers clips
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function gamer()
+    {
+        return $this->hasMany('DashboardersHeaven\Gamer', 'xuid', 'xuid');
+    }
 }
