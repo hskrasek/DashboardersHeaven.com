@@ -5,6 +5,8 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ route('clip', [$gamer->gamertag, $clip->clip_id]) }}" />
     <meta property="og:image" content="{{ $clip->thumbnail_small }}" />
+    {{-- TODO: Change this to a clip description if we ever allow for custom descriptions.--}}
+    <meta property="og:description" content="{{ $gamer->gamertag }} playing {{ $clip->game->title }}" />
 @endsection
 
 @section('title')
