@@ -1,4 +1,4 @@
-<?php namespace Dashboarders\Services;
+<?php namespace DashboardersHeaven\Services;
 
 use DashboardersHeaven\Clip;
 use DashboardersHeaven\Gamer;

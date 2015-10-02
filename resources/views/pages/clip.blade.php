@@ -1,5 +1,5 @@
 @extends('app')
-@inject('clipService', 'Dashboarders\Services\ClipService')
+@inject('clipService', 'DashboardersHeaven\Services\ClipService')
 
 @section('head')
     <meta property="og:title" content="{{ $clipService->generateTitle($clip, $gamer) }}" />

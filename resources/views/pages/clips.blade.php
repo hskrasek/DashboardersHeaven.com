@@ -1,5 +1,5 @@
 @extends('app')
-@inject('clipService', 'Dashboarders\Services\ClipService')
+@inject('clipService', 'DashboardersHeaven\Services\ClipService')
 
 @section('title')
     {{ $gamer->gamertag }}'s Clips
