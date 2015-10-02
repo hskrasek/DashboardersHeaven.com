@@ -11,14 +11,14 @@
 @endsection
 
 @section('title')
-{{ $clipService->generateTitle($clip) }}
+{{ $clipService->generateTitle($clip, $gamer) }}
 @endsection
 
 @section('header')
     <div id="blue">
         <div class="container">
             <div class="row">
-                <h3>{{ $clipService->generateTitle($clip) }}
+                <h3>{{ $clipService->generateTitle($clip, $gamer) }}
                 <small><time datetime="{{ $clip->recorded_at }}">{{ $clip->recorded_at }}</time></small>
                 </h3>
             </div><!-- /row -->

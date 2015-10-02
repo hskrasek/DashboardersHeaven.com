@@ -21,7 +21,7 @@
             @foreach($clips as $index => $clip)
                 <div class="col-lg-3 col-md-3 col-sm-3">
                     <a href="{{ route('clip', [$gamer->gamertag, $clip->clip_id]) }}"><img src="{{ $clip->thumbnail_small }}" alt="clip-{{$clip->id}} thumbnail"></a>
-                    <h4>{{ $clipService->generateTitle($clip) }}</h4>
+                    <h4>{{ $clipService->generateTitle($clip, $gamer) }}</h4>
                 </div>
             @if($index !== 0 && ($index + 1) % 4 === 0)
         </div>
