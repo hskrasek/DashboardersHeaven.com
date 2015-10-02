@@ -1,6 +1,7 @@
 <?php namespace DashboardersHeaven\Providers;
 
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
+use Dashboarders\Services\ClipService;
 use Illuminate\Support\ServiceProvider;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\SyslogHandler;
@@ -35,5 +36,9 @@ class AppServiceProvider extends ServiceProvider
         $syslog->setFormatter($formatter);
 
         $logger->pushHandler($syslog);
+
+        $this->app->singleton(ClipService::class, function () {
+            return new ClipService;
+        });
     }
 }
