@@ -1,7 +1,8 @@
 @extends('app')
+@inject('clipService', 'Dashboarders\Services\ClipService')
 
 @section('head')
-    <meta property="og:title" content="@if(!empty($clip->name)) {{ $clip->name }} in @endif{{ $clip->game->title }}" />
+    <meta property="og:title" content="{{ $clipService->generateTitle($clip, $gamer) }}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ route('clip', [$gamer->gamertag, $clip->clip_id]) }}" />
     <meta property="og:image" content="{{ $clip->thumbnail_small }}" />
@@ -10,14 +11,14 @@
 @endsection
 
 @section('title')
-@if(!empty($clip->name)) {{ $clip->name }} in @endif{{ $clip->game->title }}
+{{ $clipService->generateTitle($clip) }}
 @endsection
 
 @section('header')
     <div id="blue">
         <div class="container">
             <div class="row">
-                <h3>@if(!empty($clip->name)) {{ $clip->name }} in @endif{{ $clip->game->title }}
+                <h3>{{ $clipService->generateTitle($clip) }}
                 <small><time datetime="{{ $clip->recorded_at }}">{{ $clip->recorded_at }}</time></small>
                 </h3>
             </div><!-- /row -->
