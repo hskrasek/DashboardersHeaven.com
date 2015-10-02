@@ -84,6 +84,7 @@ class UpdateGamersClipsCommand extends Command
             'clip_id'         => data_get($data, 'gameClipId'),
             'title_id'        => data_get($data, 'titleId'),
             'name'            => data_get($data, 'clipName'),
+            'game_title'      => data_get($data, 'titleName'),
             'xuid'            => data_get($data, 'xuid'),
             'thumbnail_small' => data_get($data, 'thumbnails.0.uri'),
             'thumbnail_large' => data_get($data, 'thumbnails.1.uri'),

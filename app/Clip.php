@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer                       $title_id
  * @property integer                       $xuid
  * @property string                        $name
+ * @property string                        $game_title
  * @property string                        $thumbnail_small
  * @property string                        $thumbnail_large
  * @property string                        $url
@@ -39,6 +40,7 @@ class Clip extends Model
         'clip_id',
         'title_id',
         'name',
+        'game_title',
         'xuid',
         'thumbnail_small',
         'thumbnail_large',
