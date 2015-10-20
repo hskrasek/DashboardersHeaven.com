@@ -1,6 +1,8 @@
 <?php namespace DashboardersHeaven\Providers;
 
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
+use DashboardersHeaven\Events\GameCreated;
+use DashboardersHeaven\Game;
 use DashboardersHeaven\Services\ClipService;
 use Illuminate\Support\ServiceProvider;
 use Monolog\Formatter\LineFormatter;
@@ -15,7 +17,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Game::created(function (Game $game) {
+            $dispatcher = $this->app->make('events');
+            $dispatcher->fire(new GameCreated($game));
+        });
+
+        Game::updated(function (Game $game) {
+            $dispatcher = $this->app->make('events');
+            $dispatcher->fire(new GameCreated($game));
+        });
     }
 
     /**

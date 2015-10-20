@@ -33,6 +33,10 @@ class Game extends Model
         'last_unlock'
     ];
 
+    protected $dates = [
+        'release_date'
+    ];
+
     public function gamers()
     {
         return $this->belongsToMany('DashboardersHeaven\Gamer')

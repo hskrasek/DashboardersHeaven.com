@@ -1,7 +1,6 @@
-<?php
+<?php namespace DashboardersHeaven\Providers;
 
-namespace DashboardersHeaven\Providers;
-
+use DashboardersHeaven\Events\GameCreated;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -13,15 +12,16 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'DashboardersHeaven\Events\SomeEvent' => [
-            'DashboardersHeaven\Listeners\EventListener',
+        GameCreated::class => [
+            'DashboardersHeaven\Listeners\GameCreatedListener',
         ],
     ];
 
     /**
      * Register any other events for your application.
      *
-     * @param  \Illuminate\Contracts\Events\Dispatcher  $events
+     * @param  \Illuminate\Contracts\Events\Dispatcher $events
+     *
      * @return void
      */
     public function boot(DispatcherContract $events)

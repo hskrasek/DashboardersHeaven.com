@@ -50,6 +50,10 @@ class Clip extends Model
         'expired'
     ];
 
+    protected $dates = [
+        'recorded_at'
+    ];
+
     /**
      * Get the game this clip was recorded in
      *
