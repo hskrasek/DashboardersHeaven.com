@@ -29,11 +29,11 @@ class GameCreatedListener
         $response = $this->client->get('/v2/game-details-hex/' . $titleId);
         $gameData = head(data_get(json_decode((string) $response->getBody()), 'Items'));
         $game->update([
-            'description'      => array_get($gameData, 'Description'),
-            'shortDescription' => array_get($gameData, 'ReducedDescription'),
-            'release_date'     => array_get($gameData, 'ReleaseDate'),
-            'image_url'        => array_get($gameData, 'Images.0.Url'),
-            'resize_image_url' => array_get($gameData, 'Images.0.ResizeUrl'),
+            'description'      => data_get($gameData, 'Description'),
+            'shortDescription' => data_get($gameData, 'ReducedDescription'),
+            'release_date'     => data_get($gameData, 'ReleaseDate'),
+            'image_url'        => data_get($gameData, 'Images.0.Url'),
+            'resize_image_url' => data_get($gameData, 'Images.0.ResizeUrl'),
         ]);
     }
 }
