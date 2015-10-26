@@ -21,11 +21,6 @@ class AppServiceProvider extends ServiceProvider
             $dispatcher = $this->app->make('events');
             $dispatcher->fire(new GameCreated($game));
         });
-
-        Game::updated(function (Game $game) {
-            $dispatcher = $this->app->make('events');
-            $dispatcher->fire(new GameCreated($game));
-        });
     }
 
     /**
