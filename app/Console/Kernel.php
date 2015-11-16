@@ -4,6 +4,7 @@ use DashboardersHeaven\Console\Commands\GamersCommand;
 use DashboardersHeaven\Console\Commands\UpdateGamersClipsCommand;
 use DashboardersHeaven\Console\Commands\UpdateGamersCommand;
 use DashboardersHeaven\Console\Commands\UpdateGamersGamesCommand;
+use DashboardersHeaven\Console\Commands\UpdateGamesCommand;
 use DashboardersHeaven\Gamer;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
@@ -19,7 +20,8 @@ class Kernel extends ConsoleKernel
         GamersCommand::class,
         UpdateGamersCommand::class,
         UpdateGamersGamesCommand::class,
-        UpdateGamersClipsCommand::class
+        UpdateGamersClipsCommand::class,
+        UpdateGamesCommand::class,
     ];
 
     /**
@@ -33,6 +35,12 @@ class Kernel extends ConsoleKernel
     {
         $gamers = Gamer::all();
         foreach ($gamers as $gamer) {
+            $schedule->command('games:update')
+                     ->name('Update games')
+                     ->daily()
+                     ->withoutOverlapping()
+                     ->sendOutputTo(storage_path("logs/commands/games-update.log"));
+
             $schedule->command('gamers', [$gamer->xuid])
                      ->name('Update ' . $gamer->gamertag)
                      ->hourly()

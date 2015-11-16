@@ -14,7 +14,7 @@ class ClipsController extends Controller
         $gamer = Gamer::whereGamertag($gamertag)->first();
         $clips = Clip::with('game')->whereHas('gamer', function ($query) use ($gamer) {
             $query->where('xuid', '=', $gamer->xuid);
-        })->orderBy('created_at', 'desc')->paginate(16);
+        })->orderBy('recorded_at', 'desc')->paginate(16);
         if (!$gamer) {
             app()->abort(404); //TODO: Probably make this better, maybe?
         }
