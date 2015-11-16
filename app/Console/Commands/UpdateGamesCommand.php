@@ -2,6 +2,7 @@
 
 namespace DashboardersHeaven\Console\Commands;
 
+use Carbon\Carbon;
 use DashboardersHeaven\Game;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
@@ -61,7 +62,7 @@ class UpdateGamesCommand extends Command
         $game->update([
             'description'      => data_get($gameData, 'Description'),
             'shortDescription' => data_get($gameData, 'ReducedDescription'),
-            'release_date'     => data_get($gameData, 'ReleaseDate'),
+            'release_date'     => Carbon::parse(data_get($gameData, 'ReleaseDate')),
             'image_url'        => data_get($gameData, 'Images.0.Url'),
             'resize_image_url' => data_get($gameData, 'Images.0.ResizeUrl'),
         ]);
