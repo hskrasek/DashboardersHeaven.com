@@ -59,7 +59,7 @@ class UpdateGamersCommand extends Command
 
     private function getGamercard($xuid)
     {
-        $this->info("Getting the gamercard data for { $this->gamer->gamertag } ($xuid)");
+        $this->info("Getting the gamercard data for {$this->gamer->gamertag} ($xuid)");
 
         $response  = $this->client->get("v2/$xuid/gamercard");
         $gamercard = json_decode((string) $response->getBody());
