@@ -3,6 +3,7 @@
 namespace DashboardersHeaven\Console\Commands;
 
 use DashboardersHeaven\Game;
+use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 
 class UpdateGamesCommand extends Command
