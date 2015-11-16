@@ -35,6 +35,7 @@ class Kernel extends ConsoleKernel
     {
         $gamers = Gamer::all();
         foreach ($gamers as $gamer) {
+            \Log::debug('command.schedule', $gamer->toArray());
             $schedule->command('games:update')
                      ->name('Update games')
                      ->daily()
