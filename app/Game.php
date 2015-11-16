@@ -30,7 +30,12 @@ class Game extends Model
         'earned_achievements',
         'current_gamerscore',
         'max_gamerscore',
-        'last_unlock'
+        'last_unlock',
+        'description',
+        'short_description',
+        'image_url',
+        'resize_image_url',
+        'release_date',
     ];
 
     protected $dates = [
