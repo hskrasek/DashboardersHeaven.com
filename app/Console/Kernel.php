@@ -35,6 +35,7 @@ class Kernel extends ConsoleKernel
     {
         $gamers = Gamer::all();
         foreach ($gamers as $gamer) {
+            $safeGamertag = str_replace(' ', '_', $gamer->gamertag);
             $schedule->command('games:update')
                      ->name('Update games')
                      ->daily()
@@ -45,13 +46,13 @@ class Kernel extends ConsoleKernel
                      ->name('Update ' . $gamer->gamertag)
                      ->hourly()
                      ->withoutOverlapping()
-                     ->sendOutputTo(storage_path("logs/commands/{$gamer->gamertag}.log"));
+                     ->sendOutputTo(storage_path("logs/commands/{$safeGamertag}.log"));
 
             $schedule->command('gamers:clips', [$gamer->xuid])
                      ->name('Update ' . $gamer->gamertag . '\'s clips')
                      ->everyThirtyMinutes()
                      ->withoutOverlapping()
-                     ->sendOutputTo(storage_path("logs/commands/{$gamer->gamertag}-clips.log"));
+                     ->sendOutputTo(storage_path("logs/commands/{$safeGamertag}-clips.log"));
         }
     }
 }

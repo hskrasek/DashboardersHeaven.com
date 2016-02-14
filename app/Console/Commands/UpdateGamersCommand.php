@@ -81,7 +81,6 @@ class UpdateGamersCommand extends Command
         $profile  = json_decode((string) $response->getBody());
 
         $this->gamer->update([
-            'gamertag'    => data_get($profile, 'Gamertag'),
             'gamerscore'  => data_get($profile, 'Gamerscore'),
             'display_pic' => data_get($profile, 'GameDisplayPicRaw'),
             'level'       => data_get($profile, 'TenureLevel'),
