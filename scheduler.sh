@@ -9,4 +9,8 @@ if [ -f /home/forge/default/storage/logs/${YESTERDAY_LOG} ]; then
     rm /home/forge/default/storage/logs/${YESTERDAY_LOG}
 fi
 
-php /home/forge/default/artisan schedule:run > /home/forge/default/storage/logs/${TODAY_LOG}
+if [ ! -f /home/forge/default/storage/logs/${TODAY_LOG} ]; then
+    touch /home/forge/default/storage/logs/${TODAY_LOG}
+fi
+
+php /home/forge/default/artisan schedule:run >> /home/forge/default/storage/logs/${TODAY_LOG}
