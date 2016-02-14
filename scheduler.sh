@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 TODAY=$(date "+%Y-%d-%m")
-TODAY_LOG="scheduler_${today}.log"
+TODAY_LOG="scheduler_${TODAY}.log"
 YESTERDAY=$(date "+%Y-%d-%m" -d "yesterday")
 YESTERDAY_LOG="scheduler_${YESTERDAY}.log"
 
