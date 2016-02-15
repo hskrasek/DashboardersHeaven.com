@@ -9,9 +9,9 @@
         <div class="container">
             <div class="row">
                 <h3>Our Members.</h3>
-            </div><!-- /row -->
-        </div> <!-- /container -->
-    </div><!-- /blue -->
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('content')
@@ -23,7 +23,7 @@
                 <div class="hline"></div>
             </div>
         </div>
-    </div><!--/container -->
+    </div>
     <div id="portfoliowrap">
         <div class="portfolio-centered">
             <div class="recentitems portfolio">
@@ -38,12 +38,14 @@
                                        data-animate="fadeInUp"><i class="fa fa-user"></i></a>
                                     <a href="{{ route('member.clips', [$gamer->gamertag]) }}" class="dmbutton a2"
                                        data-animate="fadeInUp"><i class="fa fa-video-camera"></i></a>
-                                </div><!-- he bg -->
-                            </div><!-- he view -->
-                        </div><!-- he wrap -->
-                    </div><!-- end col-12 -->
+                                    {{--<a href="{{ route('member.screenshots', [$gamer->gamertag]) }}" class="dmbutton a2"--}}
+                                       {{--data-animate="fadeInUp"><i class="fa fa-picture-o"></i></a>--}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
-            </div><!-- portfolio -->
-        </div><!-- portfolio container -->
-    </div><!--/Portfoliowrap -->
+            </div>
+        </div>
+    </div>
 @endsection
