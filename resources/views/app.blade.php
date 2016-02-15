@@ -8,7 +8,7 @@
     <title>Dashboarder's Heaven | @yield('title')</title>
 
     <link rel="stylesheet" href="{{ elixir("css/all.css") }}">
-    <link href="//vjs.zencdn.net/4.12/video-js.css" rel="stylesheet">
+    <link href="//vjs.zencdn.net/5.4.6/video-js.min.css" rel="stylesheet">
     @yield('head')
 </head>
 
@@ -22,7 +22,7 @@
 
 @include('partials.footer')
 
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -30,10 +30,10 @@
 
 <script src="{{ elixir("js/all.js") }}"></script>
 
-<script src="//vjs.zencdn.net/4.12/video.js"></script>
+<script src="//vjs.zencdn.net/5.4.6/video.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
 <script type="application/javascript">
-    $('time').each(function(i, e) {
+    $('time').each(function (i, e) {
         var time = moment($(e).attr('datetime'));
         $(e).html(time.fromNow());
     });

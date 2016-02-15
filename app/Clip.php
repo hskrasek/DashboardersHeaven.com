@@ -71,6 +71,6 @@ class Clip extends Model
      */
     public function gamer()
     {
-        return $this->hasMany('DashboardersHeaven\Gamer', 'xuid', 'xuid');
+        return $this->belongsTo('DashboardersHeaven\Gamer', 'xuid', 'xuid');
     }
 }

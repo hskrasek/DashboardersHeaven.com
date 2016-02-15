@@ -13,26 +13,40 @@
 
 Route::get('/', [
     'as'   => 'home',
-    'uses' => 'HomeController@index'
-]);
-Route::get('/news', [
-    'as'   => 'news',
-    'uses' => 'NewsController@index'
-]);
-Route::get('/members', [
-    'as'   => 'members',
     'uses' => 'GamersController@index'
 ]);
-Route::get('/members/{gamer}', [
-    'as'   => 'member',
-    'uses' => 'GamersController@show'
-]);
-Route::get('/clips/{gamer}', [
+
+Route::get('/clips', [
     'as'   => 'clips',
-    'uses' => 'ClipsController@clips'
+    'uses' => 'ClipsController@index'
 ]);
-Route::get('/clips/{gamer}/{clipId}', [
+
+Route::get('/clips/{clip_id}', [
     'as'   => 'clip',
     'uses' => 'ClipsController@clip'
 ]);
-Route::get('/about', 'AboutController@index');
+
+Route::get('/{gamertag}', [
+    'as'   => 'member',
+    'uses' => 'GamersController@show'
+]);
+
+Route::get('/{gamertag}/clips', [
+    'as'   => 'member.clips',
+    'uses' => 'ClipsController@clipsForGamertag'
+]);
+
+Route::get('/{gamertag}/clips/{clip_id}', [
+    'as'   => 'member.clip',
+    'uses' => 'ClipsController@clipForGamertag'
+]);
+
+// Redirect routes to handle some of the older routes
+
+Route::get('/members', function () {
+    return redirect('/');
+});
+
+Route::get('/members/{gamer}', function ($gamertag) {
+    return redirect()->route('member', ['gamertag' => $gamertag]);
+});

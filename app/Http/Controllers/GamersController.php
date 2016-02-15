@@ -10,24 +10,24 @@ class GamersController extends Controller
     /**
      * Display a listing of the gamers.
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $gamers = Gamer::with('games')->get();
 
-        return view('pages.gamers', compact('gamers'));
+        return view('pages.gamers.index', compact('gamers'));
     }
 
     /**
-     * Display the specified resource.
+     * Display the gamers profile.
      *
-     * @param  int $id
+     * @param string $gamertag
      *
-     * @return Response
+     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($gamertag)
     {
-        //
+        dd($gamertag);
     }
 }

@@ -15,7 +15,6 @@
 @endsection
 
 @section('content')
-
     <div class="container mtb">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 centered">
@@ -25,7 +24,6 @@
             </div>
         </div>
     </div><!--/container -->
-
     <div id="portfoliowrap">
         <div class="portfolio-centered">
             <div class="recentitems portfolio">
@@ -36,8 +34,10 @@
                             <div class="he-view">
                                 <div class="bg a0" data-animate="fadeIn">
                                     <h3 class="a1" data-animate="fadeInDown">{{ $gamer->gamertag }}</h3>
-                                    <a href="{{ route('clips', [$gamer->gamertag]) }}" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-video-camera"></i></a>
-                                    <a href="{{ route('member', [$gamer->gamertag]) }}" class="dmbutton a2" data-animate="fadeInUp"><i class="fa fa-user"></i></a>
+                                    <a href="{{ route('member', [$gamer->gamertag]) }}" class="dmbutton a2"
+                                       data-animate="fadeInUp"><i class="fa fa-user"></i></a>
+                                    <a href="{{ route('member.clips', [$gamer->gamertag]) }}" class="dmbutton a2"
+                                       data-animate="fadeInUp"><i class="fa fa-video-camera"></i></a>
                                 </div><!-- he bg -->
                             </div><!-- he view -->
                         </div><!-- he wrap -->
