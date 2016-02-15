@@ -18,6 +18,17 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\DashboardersHeaven\Game whereTitle($value)
  * @method static \Illuminate\Database\Query\Builder|\DashboardersHeaven\Game whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\DashboardersHeaven\Game whereUpdatedAt($value)
+ * @property string                                                                    $description
+ * @property string                                                                    $short_description
+ * @property string                                                                    $image_url
+ * @property string                                                                    $resize_image_url
+ * @property \Carbon\Carbon                                                            $release_date
+ * @method static \Illuminate\Database\Query\Builder|\DashboardersHeaven\Game whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\DashboardersHeaven\Game whereShortDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\DashboardersHeaven\Game whereImageUrl($value)
+ * @method static \Illuminate\Database\Query\Builder|\DashboardersHeaven\Game whereResizeImageUrl($value)
+ * @method static \Illuminate\Database\Query\Builder|\DashboardersHeaven\Game whereIsApp($value)
+ * @method static \Illuminate\Database\Query\Builder|\DashboardersHeaven\Game whereReleaseDate($value)
  */
 class Game extends Model
 {
