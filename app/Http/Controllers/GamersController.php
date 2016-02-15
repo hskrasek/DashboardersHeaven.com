@@ -14,7 +14,7 @@ class GamersController extends Controller
      */
     public function index()
     {
-        $gamers = Gamer::with('games')->get();
+        $gamers = Gamer::with('games')->orderBy('gamertag')->get();
 
         return view('pages.gamers.index', compact('gamers'));
     }
