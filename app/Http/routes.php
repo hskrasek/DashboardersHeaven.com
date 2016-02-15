@@ -36,6 +36,11 @@ Route::get('/{gamertag}/clips', [
     'uses' => 'ClipsController@clipsForGamertag'
 ]);
 
+Route::get('/{gamertag}/screenshots', [
+    'as'   => 'member.screenshots',
+    'uses' => 'ScreenshotController@screenshotsForGamertag'
+]);
+
 Route::get('/{gamertag}/clips/{clip_id}', [
     'as'   => 'member.clip',
     'uses' => 'ClipsController@clipForGamertag'

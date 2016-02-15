@@ -4,6 +4,7 @@ use DashboardersHeaven\Console\Commands\GamersCommand;
 use DashboardersHeaven\Console\Commands\UpdateGamersClipsCommand;
 use DashboardersHeaven\Console\Commands\UpdateGamersCommand;
 use DashboardersHeaven\Console\Commands\UpdateGamersGamesCommand;
+use DashboardersHeaven\Console\Commands\UpdateGamersScreenshotsCommand;
 use DashboardersHeaven\Console\Commands\UpdateGamesCommand;
 use DashboardersHeaven\Gamer;
 use Illuminate\Console\Scheduling\Schedule;
@@ -22,6 +23,7 @@ class Kernel extends ConsoleKernel
         UpdateGamersGamesCommand::class,
         UpdateGamersClipsCommand::class,
         UpdateGamesCommand::class,
+        UpdateGamersScreenshotsCommand::class,
     ];
 
     /**
@@ -53,6 +55,12 @@ class Kernel extends ConsoleKernel
                      ->everyThirtyMinutes()
                      ->withoutOverlapping()
                      ->sendOutputTo(storage_path("logs/commands/{$safeGamertag}-clips.log"));
+
+            $schedule->command('gamers:screenshots', [$gamer->xuid])
+                     ->name('Update ' . $gamer->gamertag . '\'s screenshots')
+                     ->everyThirtyMinutes()
+                     ->withoutOverlapping()
+                     ->sendOutputTo(storage_path("logs/commands/{$safeGamertag}-screenshots.log"));
         }
     }
 }
