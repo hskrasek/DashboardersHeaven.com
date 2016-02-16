@@ -64,13 +64,13 @@ class UpdateGamersCommand extends Command
         $response  = $this->client->get("v2/$xuid/gamercard");
         $gamercard = json_decode((string) $response->getBody());
 
-        $this->gamer->update([
+        $this->gamer->update(array_filter([
             'gamerpic_small'  => data_get($gamercard, 'gamerpicSmallSslImagePath'),
             'gamerpic_large'  => data_get($gamercard, 'gamerpicLargeSslImagePath'),
             'motto'           => data_get($gamercard, 'motto'),
             'bio'             => data_get($gamercard, 'bio'),
             'avatar_manifest' => data_get($gamercard, 'avatarManifest'),
-        ]);
+        ]));
     }
 
     private function getProfile($xuid)
@@ -80,11 +80,11 @@ class UpdateGamersCommand extends Command
         $response = $this->client->get("v2/$xuid/profile");
         $profile  = json_decode((string) $response->getBody());
 
-        $this->gamer->update([
+        $this->gamer->update(array_filter([
             'gamerscore'  => data_get($profile, 'Gamerscore'),
             'display_pic' => data_get($profile, 'GameDisplayPicRaw'),
             'level'       => data_get($profile, 'TenureLevel'),
-        ]);
+        ]));
 
         $score = data_get($profile, 'Gamerscore');
 
