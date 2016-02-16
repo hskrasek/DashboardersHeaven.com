@@ -95,6 +95,8 @@ class UpdateGamersScreenshotsCommand extends Command
             'taken_at'        => data_get($data, 'dateTaken'),
             'expired'         => false,
             'expires_at'      => $expiresAt = Carbon::parse(data_get($clip, 'expiration')),
+            'width'           => data_get($data, 'resolutionWidth'),
+            'height'          => data_get($data, 'resolutionHeight'),
         ];
 
         $now = Carbon::now();
