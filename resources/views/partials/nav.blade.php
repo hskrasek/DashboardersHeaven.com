@@ -14,8 +14,8 @@
             <ul class="nav navbar-nav">
                 <li class="{{ set_active_link('/', 'active') }}"><a href="{{ url('/') }}">HOME</a></li>
                 <li class="{{ set_active_link('clips', 'active') }}"><a href="{{ url('clips') }}">CLIPS</a></li>
-                {{--<li class="{{ set_active_link('screenshots', 'active') }}"><a--}}
-                            {{--href="{{ url('screenshot') }}">SCREENSHOTS</a></li>--}}
+                <li class="{{ set_active_link('screenshots', 'active') }}"><a
+                            href="{{ url('screenshots') }}">SCREENSHOTS</a></li>
             </ul>
         </div>
     </div>

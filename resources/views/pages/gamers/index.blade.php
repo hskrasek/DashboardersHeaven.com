@@ -38,8 +38,8 @@
                                        data-animate="fadeInUp"><i class="fa fa-user"></i></a>
                                     <a href="{{ route('member.clips', [$gamer->gamertag]) }}" class="dmbutton a2"
                                        data-animate="fadeInUp"><i class="fa fa-video-camera"></i></a>
-                                    {{--<a href="{{ route('member.screenshots', [$gamer->gamertag]) }}" class="dmbutton a2"--}}
-                                       {{--data-animate="fadeInUp"><i class="fa fa-picture-o"></i></a>--}}
+                                    <a href="{{ route('member.screenshots', [$gamer->gamertag]) }}" class="dmbutton a2"
+                                       data-animate="fadeInUp"><i class="fa fa-picture-o"></i></a>
                                 </div>
                             </div>
                         </div>

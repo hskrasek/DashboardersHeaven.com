@@ -26,25 +26,42 @@ Route::get('/clips/{clip_id}', [
     'uses' => 'ClipsController@clip'
 ]);
 
+Route::get('/screenshots', [
+    'as'   => 'screenshots',
+    'uses' => 'ScreenshotController@index'
+]);
+
+Route::get('/screenshots/{screenshot_id}', [
+    'as'   => 'screenshot',
+    'uses' => 'ScreenshotController@screenshot'
+]);
+
 Route::get('/{gamertag}', [
     'as'   => 'member',
     'uses' => 'GamersController@show'
 ]);
 
-Route::get('/{gamertag}/clips', [
-    'as'   => 'member.clips',
-    'uses' => 'ClipsController@clipsForGamertag'
-]);
+Route::group(['prefix' => '{gamertag}'], function () {
+    Route::get('/clips', [
+        'as'   => 'member.clips',
+        'uses' => 'ClipsController@clipsForGamertag'
+    ]);
 
-Route::get('/{gamertag}/screenshots', [
-    'as'   => 'member.screenshots',
-    'uses' => 'ScreenshotController@screenshotsForGamertag'
-]);
+    Route::get('/screenshots', [
+        'as'   => 'member.screenshots',
+        'uses' => 'ScreenshotController@screenshotsForGamertag'
+    ]);
 
-Route::get('/{gamertag}/clips/{clip_id}', [
-    'as'   => 'member.clip',
-    'uses' => 'ClipsController@clipForGamertag'
-]);
+    Route::get('/screenshots/{screenshot_id}', [
+        'as'   => 'member.screenshot',
+        'uses' => 'ScreenshotController@screenshotForGamertag'
+    ]);
+
+    Route::get('/clips/{clip_id}', [
+        'as'   => 'member.clip',
+        'uses' => 'ClipsController@clipForGamertag'
+    ]);
+});
 
 // Redirect routes to handle some of the older routes
 

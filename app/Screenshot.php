@@ -58,6 +58,11 @@ class Screenshot extends Model
         'expires_at'
     ];
 
+    public function game()
+    {
+        return $this->belongsTo(Game::class, 'title_id', 'title_id');
+    }
+
     public function gamer()
     {
         return $this->belongsTo(Gamer::class, 'gamer_id', 'id');
