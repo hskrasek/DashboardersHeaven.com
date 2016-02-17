@@ -1,9 +1,9 @@
 // PrettyPhoto
-(function($) {
+(function ($) {
 
-    $(document).ready(function(){
+    $(document).ready(function () {
 
-        $('a[data-gal]').each(function() {
+        $('a[data-gal]').each(function () {
             $(this).attr('rel', $(this).data('gal'));
         });
 
@@ -20,14 +20,14 @@
 })($);
 
 // Portfolio
-(function($) {
+(function ($) {
 
     "use strict";
     var $container = $('.portfolio'),
         $items = $container.find('.portfolio-item'),
         portfolioLayout = 'fitRows';
 
-    if( $container.hasClass('portfolio-centered') ) {
+    if ($container.hasClass('portfolio-centered')) {
         portfolioLayout = 'masonry';
     }
 
@@ -40,18 +40,17 @@
             easing: 'linear',
             queue: false
         },
-        masonry: {
-        }
+        masonry: {}
     }, refreshWaypoints());
 
     function refreshWaypoints() {
-        setTimeout(function() {
+        setTimeout(function () {
         }, 1000);
     }
 
-    $('nav.portfolio-filter ul a').on('click', function() {
+    $('nav.portfolio-filter ul a').on('click', function () {
         var selector = $(this).attr('data-filter');
-        $container.isotope({ filter: selector }, refreshWaypoints());
+        $container.isotope({filter: selector}, refreshWaypoints());
         $('nav.portfolio-filter ul a').removeClass('active');
         $(this).addClass('active');
         return false;
@@ -80,9 +79,14 @@
             columnNumber = getColumnNumber(),
             itemWidth = Math.floor(winWidth / columnNumber);
 
-        $container.find('.portfolio-item').each(function() {
-            $(this).css( {
-                width : itemWidth + 'px'
+        $container.find('.portfolio-item').each(function () {
+            $(this).css({
+                width: itemWidth + 'px'
+            });
+            $(this).find('img').each(function () {
+                $(this).css({
+                    width: itemWidth + 'px'
+                })
             });
         });
     }
