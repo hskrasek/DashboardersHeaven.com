@@ -1,0 +1,25 @@
+{
+  "name": "Dashboarders Heaven Member Site",
+  "description": "A website for Dashboarders to see everyones clips and screenshots",
+  "main": "",
+  "license": "MIT",
+  "homepage": "https://github.com/hskrasek/DashboardersHeaven.com",
+  "moduleType": [
+    "node"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "c3": "~0.4.10",
+    "font-awesome": "fontawesome#^4.5.0",
+    "bootstrap": "^3.3.6",
+    "jquery-prettyPhoto": "^3.1.6",
+    "retina.js": "^1.3.0"
+  }
+}

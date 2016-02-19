@@ -1,3 +1,12 @@
 #blue h3 small {
     color: #fff;
 }
+
+img.media-object.gamer-pic {
+    width: 384px;
+    height: 384px;
+}
+
+.gamer-profile-info {
+    border-right: 1px solid #EEEEEE;
+}

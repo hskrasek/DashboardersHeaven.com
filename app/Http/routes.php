@@ -63,6 +63,13 @@ Route::group(['prefix' => '{gamertag}'], function () {
     ]);
 });
 
+Route::group(['prefix' => 'ajax'], function () {
+    Route::any('gamerscores/{gamer_id}', [
+        'as'   => 'ajax.gamerscores',
+        'uses' => 'AjaxController@gamerscores'
+    ]);
+});
+
 // Redirect routes to handle some of the older routes
 
 Route::get('/members', function () {

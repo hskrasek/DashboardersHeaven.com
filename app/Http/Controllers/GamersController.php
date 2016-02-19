@@ -28,6 +28,8 @@ class GamersController extends Controller
      */
     public function show($gamertag)
     {
-        dd($gamertag);
+        $gamer = Gamer::with(['games'])->whereGamertag($gamertag)->first();
+
+        return view('pages.gamers.profile', compact('gamer'));
     }
 }

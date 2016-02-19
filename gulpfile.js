@@ -13,30 +13,35 @@ var elixir = require('laravel-elixir');
 
 var paths = {
     jquery: 'vendor/jquery/',
-    bootstrap: 'vendor/bootstrap/'
+    bootstrap: 'vendor/bootstrap/',
+    bowerComponents: 'bower_components/',
 };
 
 elixir(function (mix) {
     mix.styles([
-        paths.bootstrap + 'bootstrap.css',
-        paths.bootstrap + 'prettyPhoto.css',
-        paths.bootstrap + 'hoverex-all.css',
-        paths.bootstrap + 'bootstrap-solid-theme.css',
-        paths.bootstrap + 'font-awesome.min.css',
-        'custom.css'
-    ], null, 'resources/assets/css/');
+        paths.bowerComponents + 'bootstrap/dist/css/bootstrap.css',
+        paths.bowerComponents + 'jquery-prettyPhoto/css/prettyPhoto.css',
+        'css/' + paths.bootstrap + 'hoverex-all.css',
+        'css/' + paths.bootstrap + 'bootstrap-solid-theme.css',
+        paths.bowerComponents + 'font-awesome/css/font-awesome.min.css',
+        paths.bowerComponents + 'c3/c3.css',
+        'css/custom.css',
+    ], null, 'resources/assets/');
 
     mix.scripts([
-        paths.jquery + 'jquery-2.1.4.min.js',
-        paths.bootstrap + 'bootstrap.min.js',
-        paths.jquery + 'retina-1.1.0.js',
-        paths.jquery + 'jquery.hoverdir.js',
-        paths.jquery + 'jquery.hoverex.min.js',
-        paths.jquery + 'jquery.prettyPhoto.js',
-        paths.jquery + 'jquery.isotope.min.js',
-        'app.js'
-    ], null, 'resources/assets/js/');
+        paths.bowerComponents + 'jquery/dist/jquery.js',
+        paths.bowerComponents + 'bootstrap/dist/js/bootstrap.js',
+        paths.bowerComponents + 'retina.js/dist/retina.js',
+        'js/' + paths.jquery + 'jquery.hoverdir.js',
+        'js/' + paths.jquery + 'jquery.hoverex.min.js',
+        paths.bowerComponents + 'jquery-prettyPhoto/js/jquery.prettyPhoto.js',
+        'js/' + paths.jquery + 'jquery.isotope.min.js',
+        paths.bowerComponents + 'd3/d3.js',
+        paths.bowerComponents + 'c3/c3.js',
+        'js/app.js'
+    ], null, 'resources/assets/');
 
     mix.version(['public/css/all.css', 'public/js/all.js']);
-    mix.copy('resources/assets/fonts', 'public/build/fonts');
+    mix.copy(paths.bowerComponents + 'bootstrap/dist/fonts', 'public/build/fonts');
+    mix.copy(paths.bowerComponents + 'font-awesome/fonts', 'public/build/fonts');
 });
