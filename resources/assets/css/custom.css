@@ -10,3 +10,7 @@ img.media-object.gamer-pic {
 .gamer-profile-info {
     border-right: 1px solid #EEEEEE;
 }
+
+svg {
+    overflow: visible !important;
+}

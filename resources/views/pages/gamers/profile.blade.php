@@ -41,7 +41,6 @@
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
-                <h4 class="centered">Gamerscore over Time</h4>
                 <div id="chart"></div>
             </div>
         </div>
@@ -63,16 +62,23 @@
                 },
                 axis: {
                     x: {
+                        label: 'Date',
                         type: 'timeseries',
                         tick: {
-                            format: '%m-%d'
+                            format: '%m-%d-%Y'
                         },
                     },
+                    y: {
+                        label: 'Gamerscore',
+                    }
                 },
                 grid: {
                     x: {
                         show: true,
                     },
+                    y: {
+                        show: true,
+                    }
                 }
             });
         }, 1000);
