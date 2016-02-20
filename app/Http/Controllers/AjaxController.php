@@ -12,17 +12,20 @@ class AjaxController extends Controller
         $now      = Carbon::now()->endOfDay();
         $lastWeek = (clone $now);
         $lastWeek->subWeek(1)->startOfDay();
-        $gamerscores = DB::table('gamerscores')
-                         ->select(DB::raw('MAX(score) as count, DATE(created_at) as date'))
-                         ->where('gamer_id', $gamerId)
-//                         ->whereBetween('created_at', [$lastWeek->toDateTimeString(), $now->toDateTimeString()])
-                         ->groupBy(DB::raw('DATE(created_at)'))
-                         ->orderBy('created_at', 'ASC')
-                         ->get();
+        $sub = DB::table('gamerscores')
+                 ->select(DB::raw('score as score, DATE(created_at) as date'))
+                 ->where('gamer_id', $gamerId)
+                 ->groupBy(DB::raw('DATE(created_at)'))
+                 ->orderBy('created_at', 'DESC');
+
+        $gamerscores = collect(DB::table(DB::raw("({$sub->toSql()}) as sub"))
+                                 ->mergeBindings($sub)
+                                 ->groupBy('score')
+                                 ->get());
 
         return Response::json([
-            'x'          => array_pluck($gamerscores, 'date'),
-            'gamerscore' => array_pluck($gamerscores, 'count'),
+            'x'          => $gamerscores->pluck('date'),
+            'gamerscore' => $gamerscores->pluck('score'),
         ]);
     }
 }
