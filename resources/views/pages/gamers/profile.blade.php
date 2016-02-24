@@ -49,38 +49,52 @@
 
 @section('scripts')
     <script type="application/javascript">
-        setTimeout(function () {
-            c3.generate({
-                bindto: '#chart',
-                data: {
-                    x: 'x',
-                    url: '/ajax/gamerscores/{{ $gamer->id }}',
-                    mimeType: 'json'
-                },
-                legend: {
-                    show: true
-                },
-                axis: {
-                    x: {
-                        label: 'Date',
-                        type: 'timeseries',
-                        tick: {
-                            format: '%m-%d-%Y'
-                        },
+        var chart = c3.generate({
+            bindto: '#chart',
+            data: {
+                x: 'x',
+                url: '/ajax/gamerscores/{{ $gamer->id }}',
+                mimeType: 'json',
+            },
+            legend: {
+                show: true
+            },
+            axis: {
+                x: {
+                    label: {
+                        text: 'Date',
+                        position: 'outer-center'
                     },
-                    y: {
-                        label: 'Gamerscore',
-                    }
-                },
-                grid: {
-                    x: {
-                        show: true,
+                    type: 'timeseries',
+                    tick: {
+                        format: '%e %b %y',
+                        rotate: 65,
+                        multiline: true,
+                        fit: true,
                     },
-                    y: {
-                        show: true,
+                },
+                y: {
+                    label: {
+                        text: 'Gamerscore',
+                        position: 'outer-center'
+                    },
+                    tick: {
+                        format: d3.format(',')
                     }
                 }
-            });
-        }, 1000);
+            },
+            tooltip: {
+                format: {
+                    title: function (data) {
+                        return 'Gamerscore on ' + d3.time.format('%e %b %y')(data);
+                    },
+                    value: function (value, ratio, id) {
+                        var format = id === 'gamerscore' ? d3.format(',') : d3.time.format('%e %b %y');
+
+                        return format(value);
+                    }
+                }
+            }
+        });
     </script>
 @endsection
