@@ -1,5 +1,14 @@
 @extends('app')
 
+@section('head')
+    <meta property="og:title" content="{{ $gamer->gamertag }}"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="{{ route('member', [$gamer->gamertag]) }}"/>
+    <meta property="og:image" content="{{ $gamer->display_pic }}"/>
+    {{-- TODO: Change this to a clip description if we ever allow for custom descriptions.--}}
+    <meta property="og:description" content="{{ $gamer->gamertag }}s profile."/>
+@endsection
+
 @section('title')
     {{ $gamer->gamertag }}
 @endsection
