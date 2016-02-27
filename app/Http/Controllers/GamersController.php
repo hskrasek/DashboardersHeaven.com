@@ -30,6 +30,10 @@ class GamersController extends Controller
     {
         $gamer = Gamer::with(['games'])->whereGamertag($gamertag)->first();
 
+        if (empty($gamer)) {
+            app()->abort(404);
+        }
+
         return view('pages.gamers.profile', compact('gamer'));
     }
 }

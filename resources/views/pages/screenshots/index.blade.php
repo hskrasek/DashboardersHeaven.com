@@ -1,4 +1,5 @@
 @extends('app')
+@inject('titles', 'DashboardersHeaven\Services\Titles\TitleService')
 
 @section('title')
     Dashboarder's Screenshots
@@ -23,8 +24,7 @@
                         <img src="{{ $screenshot->thumbnail_small }}" alt="clip-{{$screenshot->id}} thumbnail">
                     </a>
                     <h4>
-                        <strong>{{ $screenshot->gamer->gamertag }}</strong> playing
-                        <strong>{{ $screenshot->game->title }}</strong>
+                        {{ $titles->generate($screenshot->gamer, $screenshot) }}
                     </h4>
                 </div>
                 @if($index !== 0 && ($index + 1) % 4 === 0)

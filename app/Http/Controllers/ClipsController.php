@@ -11,7 +11,7 @@ class ClipsController extends Controller
         $clips = Clip::with(['game', 'gamer'])->orderBy('recorded_at', 'desc')->paginate(16);
 
         if (!$clips) {
-            app()->abort(404); //TODO: Probably make this better, maybe?
+            app()->abort(404);
         }
 
         return view('pages.clips.index', ['clips' => $clips]);
@@ -21,6 +21,10 @@ class ClipsController extends Controller
     {
         $clip = Clip::with(['game', 'gamer'])->whereClipId($clipId)->first();
 
+        if (!$clip) {
+            app()->abort(404);
+        }
+
         return view('pages.clips.clip', ['clip' => $clip, 'gamer' => $clip->gamer]);
     }
 
@@ -28,13 +32,13 @@ class ClipsController extends Controller
     {
         $gamer = Gamer::whereGamertag($gamertag)->first();
 
-        $clips = Clip::with('game')->whereHas('gamer', function ($query) use ($gamer) {
-            $query->where('xuid', '=', $gamer->xuid);
-        })->orderBy('recorded_at', 'desc')->paginate(16);
-
         if (!$gamer) {
             app()->abort(404); //TODO: Probably make this better, maybe?
         }
+
+        $clips = Clip::with('game')->whereHas('gamer', function ($query) use ($gamer) {
+            $query->where('xuid', '=', $gamer->xuid);
+        })->orderBy('recorded_at', 'desc')->paginate(16);
 
         return view('pages.gamers.clips', ['gamer' => $gamer, 'clips' => $clips]);
     }
@@ -42,7 +46,16 @@ class ClipsController extends Controller
     public function clipForGamertag(Request $request, $gamertag, $clipId)
     {
         $gamer = Gamer::whereGamertag($gamertag)->first();
-        $clip  = Clip::with('game')->whereClipId($clipId)->first();
+
+        if (!$gamer) {
+            app()->abort(404);
+        }
+
+        $clip = Clip::with('game')->whereClipId($clipId)->first();
+
+        if (!$clip) {
+            app()->abort(404);
+        }
 
         return view('pages.clips.clip', ['clip' => $clip, 'gamer' => $gamer]);
     }

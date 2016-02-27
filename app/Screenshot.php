@@ -7,22 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * DashboardersHeaven\Screenshot
  *
- * @property integer        $id
- * @property integer        $gamer_id
- * @property string         $screenshot_id
- * @property integer        $title_id
- * @property integer        $width
- * @property integer        $height
- * @property string         $thumbnail_small
- * @property string         $thumbnail_large
- * @property string         $url
- * @property boolean        $saved
- * @property boolean        $expired
- * @property string         $expires_at
- * @property string         $taken_at
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
- * @property-read Gamer     $gamer
+ * @property integer                       $id
+ * @property integer                       $gamer_id
+ * @property string                        $screenshot_id
+ * @property integer                       $title_id
+ * @property integer                       $width
+ * @property integer                       $height
+ * @property string                        $thumbnail_small
+ * @property string                        $thumbnail_large
+ * @property string                        $url
+ * @property boolean                       $saved
+ * @property boolean                       $expired
+ * @property string                        $expires_at
+ * @property string                        $taken_at
+ * @property \Carbon\Carbon                $created_at
+ * @property \Carbon\Carbon                $updated_at
+ * @property-read Gamer                    $gamer
+ * @property-read \DashboardersHeaven\Game $game
  * @method static \Illuminate\Database\Query\Builder|\DashboardersHeaven\Screenshot whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\DashboardersHeaven\Screenshot whereGamerId($value)
  * @method static \Illuminate\Database\Query\Builder|\DashboardersHeaven\Screenshot whereScreenshotId($value)

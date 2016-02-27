@@ -1,16 +1,17 @@
 @extends('app')
+@inject('titles', 'DashboardersHeaven\Services\Titles\TitleService')
 
 @section('head')
-    <meta property="og:title" content="{{ $gamer->gamertag }} playing {{ $screenshot->game->title }}"/>
+    <meta property="og:title" content="{{ $titles->generate($gamer, $screenshot) }}"/>
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="{{ route('screenshot', [$gamer->gamertag, $screenshot->screenshot_id]) }}"/>
     <meta property="og:image" content="{{ $screenshot->thumbnail_small }}"/>
     {{-- TODO: Change this to a screenshot description if we ever allow for custom descriptions.--}}
-    <meta property="og:description" content="{{ $gamer->gamertag }} playing {{ $screenshot->game->title }}"/>
+    <meta property="og:description" content="{{ $titles->generate($gamer, $screenshot) }}"/>
 @endsection
 
 @section('title')
-    {{ $gamer->gamertag }} playing {{ $screenshot->game->title }}
+    {{ $titles->generate($gamer, $screenshot) }}
 @endsection
 
 @section('header')
@@ -28,11 +29,11 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
                 <a href="{{ $screenshot->url }}">
                     <img src="{{ $screenshot->url }}" class="img-responsive"
-                         alt="{{ $gamer->gamertag }} playing {{ $screenshot->game->title }}">
+                         alt="{{ $titles->generate($gamer, $screenshot) }}">
                 </a>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4">
-                <h2 class="centered">{{ $screenshot->game->title }}</h2>
+                <h2 class="centered">{{ !is_null($screenshot->game) ? $screenshot->game->title : 'Screenshot'}}</h2>
                 <div class="hline"></div>
                 <p>
                     <img src="{{ $gamer->display_pic }}" alt="{{ $gamer->gamertag }}'s Gamer Pic" width="75px"

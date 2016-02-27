@@ -58,7 +58,12 @@ class UpdateGamesCommand extends Command
     {
         $titleId  = dechex($game->title_id);
         $response = $this->client->get('/v2/game-details-hex/' . $titleId);
-        $gameData = head(data_get(json_decode((string) $response->getBody()), 'Items'));
+        $gameData = head(data_get(json_decode((string) $response->getBody()), 'Items', []));
+
+        if (empty($gameData)) {
+            $this->warn("Failed to update {$game->title}");
+        }
+
         $game->update([
             'description'      => data_get($gameData, 'Description'),
             'shortDescription' => data_get($gameData, 'ReducedDescription'),

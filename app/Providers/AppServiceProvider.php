@@ -3,7 +3,7 @@
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use DashboardersHeaven\Events\GameCreated;
 use DashboardersHeaven\Game;
-use DashboardersHeaven\Services\ClipService;
+use DashboardersHeaven\Services\TitleService;
 use Illuminate\Support\ServiceProvider;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\SyslogHandler;
@@ -39,8 +39,8 @@ class AppServiceProvider extends ServiceProvider
 
         $logger->pushHandler($syslog);
 
-        $this->app->singleton(ClipService::class, function () {
-            return new ClipService;
+        $this->app->singleton(TitleService::class, function () {
+            return new TitleService;
         });
     }
 }

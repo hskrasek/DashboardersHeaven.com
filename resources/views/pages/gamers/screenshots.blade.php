@@ -1,5 +1,4 @@
 @extends('app')
-@inject('clipService', 'DashboardersHeaven\Services\ClipService')
 
 @section('title')
     {{ $gamer->gamertag }}'s Screenshots
@@ -22,7 +21,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-3">
                     <a href="{{ route('member.screenshot', [$gamer->gamertag, $screenshot->screenshot_id]) }}"><img
                                 src="{{ $screenshot->thumbnail_small }}"
-                                alt="screenshot-{{$screenshot->screenshot_id}} screenshot"
+                                alt="screenshot-{{ $screenshot->screenshot_id }} screenshot"
                                 class="img-responsive img-thumbnail">
                     </a>
                 </div>

@@ -28,6 +28,7 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
+        app('bugsnag')->setAppVersion(env('CURRENT_VERSION'));
         return parent::report($e);
     }
 

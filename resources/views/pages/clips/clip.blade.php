@@ -1,17 +1,17 @@
 @extends('app')
-@inject('clipService', 'DashboardersHeaven\Services\ClipService')
+@inject('titles', 'DashboardersHeaven\Services\Titles\TitleService')
 
 @section('head')
-    <meta property="og:title" content="{{ $clipService->generateTitle($clip, $gamer) }}"/>
+    <meta property="og:title" content="{{ $titles->generate($gamer, $clip) }}"/>
     <meta property="og:type" content="website"/>
     <meta property="og:url" content="{{ route('clip', [$gamer->gamertag, $clip->clip_id]) }}"/>
     <meta property="og:image" content="{{ $clip->thumbnail_small }}"/>
     {{-- TODO: Change this to a clip description if we ever allow for custom descriptions.--}}
-    <meta property="og:description" content="{{ $clipService->generateTitle($clip, $gamer) }}"/>
+    <meta property="og:description" content="{{ $titles->generate($gamer, $clip) }}"/>
 @endsection
 
 @section('title')
-    {{ $clipService->generateTitle($clip, $gamer) }}
+    {{ $titles->generate($gamer, $clip) }}
 @endsection
 
 @section('header')
