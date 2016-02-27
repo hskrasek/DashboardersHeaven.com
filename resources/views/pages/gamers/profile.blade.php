@@ -44,6 +44,22 @@
                 <div id="chart"></div>
             </div>
         </div>
+        <div class="row centered">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <h3 class="centered">Games played</h3>
+                @foreach($gamer->games as $index => $game)
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <img src="{{ $game->image_url }}" alt="game-{{$game->id}} thumbnail">
+                        <h4>{{ $game->title }}</h4>
+                    </div>
+                    @if($index !== 0 && ($index + 1) % 4 === 0)
+            </div>
+            <div class="row centered">
+                @endif
+                @endforeach
+            </div><!-- portfolio container -->
+            </div>
+        </div>
     </div>
 @endsection
 

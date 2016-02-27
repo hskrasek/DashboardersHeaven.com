@@ -28,7 +28,12 @@ class GamersController extends Controller
      */
     public function show($gamertag)
     {
-        $gamer = Gamer::with(['games'])->whereGamertag($gamertag)->first();
+        $gamer = Gamer::with([
+            'games' => function ($query) {
+                $query->where('is_app', '=', 0)
+                      ->orderBy('last_unlock', 'DESC');
+            }
+        ])->whereGamertag($gamertag)->first();
 
         if (empty($gamer)) {
             app()->abort(404);
