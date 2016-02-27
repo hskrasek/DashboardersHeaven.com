@@ -31,14 +31,6 @@ class AppServiceProvider extends ServiceProvider
             $this->app->register(IdeHelperServiceProvider::class);
         }
 
-        $logger = $this->app->make('log')->getMonolog();
-
-        $syslog    = new SyslogHandler('papertrail');
-        $formatter = new LineFormatter('%channel%.%level_name%: %message% %context% %extra%');
-        $syslog->setFormatter($formatter);
-
-        $logger->pushHandler($syslog);
-
         $this->app->singleton(TitleService::class, function () {
             return new TitleService;
         });

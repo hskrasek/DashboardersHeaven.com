@@ -29,6 +29,9 @@ class Handler extends ExceptionHandler
     public function report(Exception $e)
     {
         app('bugsnag')->setAppVersion(env('CURRENT_VERSION'));
+
+        app('bugsnag')->setType(app()->runningInConsole() ? 'console' : 'laravel');
+
         return parent::report($e);
     }
 
