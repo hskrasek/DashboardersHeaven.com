@@ -18,8 +18,8 @@
     <div class="container mtb">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 centered">
-                <h2>Seems as if this page could not be found. Sorry about that. Go <a
-                            href="{{ route('home') }}">home</a></h2>
+                <div class="title"><h2>Seems as if this page could not be found. Sorry about that. Go <a
+                                href="{{ route('home') }}">home</a></h2></div>
             </div>
         </div>
     </div>
