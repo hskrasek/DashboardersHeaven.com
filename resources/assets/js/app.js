@@ -104,3 +104,7 @@
         setPortfolio();
     });
 })(jQuery);
+
+(function() {
+    aload();
+})();

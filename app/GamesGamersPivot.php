@@ -12,4 +12,12 @@ class GamesGamersPivot extends Pivot
     {
         $this->attributes['last_unlock'] = Carbon::parse($value)->toDateTimeString();
     }
+
+    /**
+     * @return Carbon
+     */
+    public function getLastUnlockAttribute()
+    {
+        return Carbon::parse($this->attributes['last_unlock']);
+    }
 }

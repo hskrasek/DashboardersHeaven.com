@@ -36,6 +36,16 @@ Route::get('/screenshots/{screenshot_id}', [
     'uses' => 'ScreenshotController@screenshot'
 ]);
 
+Route::get('games', [
+    'as'   => 'games',
+    'uses' => 'GamesController@listGames'
+]);
+
+Route::get('games/{title}', [
+    'as'   => 'game',
+    'uses' => 'GamesController@gameInfo'
+]);
+
 Route::get('/{gamertag}', [
     'as'   => 'member',
     'uses' => 'GamersController@show'
@@ -63,6 +73,7 @@ Route::group(['prefix' => '{gamertag}'], function () {
     ]);
 });
 
+// AJAX Routes for graphs and such
 Route::group(['prefix' => 'ajax'], function () {
     Route::any('gamerscores/{gamer_id}', [
         'as'   => 'ajax.gamerscores',
@@ -71,7 +82,6 @@ Route::group(['prefix' => 'ajax'], function () {
 });
 
 // Redirect routes to handle some of the older routes
-
 Route::get('/members', function () {
     return redirect('/');
 });
