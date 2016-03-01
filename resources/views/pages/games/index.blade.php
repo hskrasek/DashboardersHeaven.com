@@ -21,7 +21,7 @@
             @foreach($games as $index => $game)
                 <div class="col-lg-3 col-md-3 col-sm-3">
                     <a href="{{ route('game', [$game->title]) }}">
-                        <img data-aload="{{ $game->image_url }}" alt="game-{{$game->id}} thumbnail">
+                        <img src="{{ $game->image_url }}" alt="game-{{$game->id}} thumbnail">
                     </a>
                     <h4>{{ $game->title }}</h4>
                 </div>

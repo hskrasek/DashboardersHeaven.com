@@ -28,7 +28,7 @@
             <div class="col-lg-8 col-md-8 col-sm-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
                 <div class="media">
                     <div class="media-left media-middle">
-                        <img data-aload="{{ $game->resize_image_url }}" class="media-object"
+                        <img src="{{ $game->resize_image_url }}" class="media-object"
                              alt="{{ $game->title }}" style="max-width: none; height: 607.50px;">
                     </div>
                     <div class="media-body">
@@ -50,12 +50,12 @@
                 @foreach($gamers as $index => $gamer)
                     <div class="col-lg-3 col-md-3 col-sm-3">
                         <a href="{{ route('member', ['gamertag' => $gamer->gamertag]) }}"><img
-                                    data-aload="{{ $gamer->display_pic }}" alt="gamer-{{$gamer->id}} thumbnail"></a>
+                                    src="{{ $gamer->display_pic }}" alt="gamer-{{$gamer->id}} thumbnail"></a>
                         <div class="centered">
-                            <h4>{{ $gamer->gamertag }}</h4>
-                            <h3>Earned Achievements: {{ $gamer->pivot->earned_achievements }}
-                                <small>Last Unlock: {{ $gamer->pivot->last_unlock->toFormattedDateString() }}</small>
-                            </h3>
+                            <h3>{{ $gamer->gamertag }}</h3>
+                            <h4>Earned Achievements: {{ $gamer->pivot->earned_achievements }}
+                                <br><small>Last Unlock: {{ $gamer->pivot->last_unlock->toFormattedDateString() }}</small>
+                            </h4>
                             <h3>{{ $gamer->pivot->current_gamerscore }} / {{ $gamer->pivot->max_gamerscore }}</h3>
                         </div>
                     </div>

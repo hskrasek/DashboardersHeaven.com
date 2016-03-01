@@ -20,7 +20,7 @@
             @foreach($screenshots as $index => $screenshot)
                 <div class="col-lg-3 col-md-3 col-sm-3">
                     <a href="{{ route('member.screenshot', [$gamer->gamertag, $screenshot->screenshot_id]) }}"><img
-                                data-aload="{{ $screenshot->thumbnail_small }}"
+                                src="{{ $screenshot->thumbnail_small }}"
                                 alt="screenshot-{{ $screenshot->screenshot_id }} screenshot"
                                 class="img-responsive img-thumbnail">
                     </a>

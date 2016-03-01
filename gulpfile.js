@@ -38,7 +38,6 @@ elixir(function (mix) {
         'js/' + paths.jquery + 'jquery.isotope.min.js',
         paths.bowerComponents + 'd3/d3.js',
         paths.bowerComponents + 'c3/c3.js',
-        paths.bowerComponents + 'aload/dist/aload.js',
         'js/app.js'
     ], null, 'resources/assets/');
 
