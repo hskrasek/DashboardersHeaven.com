@@ -66,5 +66,23 @@
                 @endforeach
             </div>
         </div>
+        @if (!empty($clips))
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+                <h3 class="centered">Clips from {{ $game->title }}</h3>
+                <hr>
+                @foreach($clips as $index => $clip)
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <a href="{{ route('clip', ['clip_id' => $clip->clip_id]) }}"><img
+                                    src="{{ $clip->thumbnail_small }}" alt="clip-{{$clip->id}} thumbnail"></a>
+                    </div>
+                    @if($index !== 0 && ($index + 1) % 4 === 0)
+            </div>
+            <div class="row centered">
+                @endif
+                @endforeach
+            </div>
+        </div>
+        @endif
     </div>
 @endsection
