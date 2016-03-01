@@ -29,7 +29,7 @@
             <div class="gamer-profile-info col-lg-4 col-md-4 col-sm-4 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
                 <div class="media">
                     <div class="media-left media-middle">
-                        <img src="{{ $gamer->display_pic }}" class="media-object gamer-pic"
+                        <img data-aload="{{ $gamer->display_pic }}" class="media-object gamer-pic"
                              alt="{{ $gamer->gamertag }}'s gamer pic" style="max-width: none">
                     </div>
                     <div class="media-body">
@@ -58,7 +58,7 @@
                 <h3 class="centered">Games played</h3>
                 @foreach($gamer->games as $index => $game)
                     <div class="col-lg-3 col-md-3 col-sm-3">
-                        <img src="{{ $game->image_url }}" alt="game-{{$game->id}} thumbnail">
+                        <img data-aload="{{ $game->image_url }}" alt="game-{{$game->id}} thumbnail">
                         <h4>{{ $game->title }}</h4>
                     </div>
                     @if($index !== 0 && ($index + 1) % 4 === 0)

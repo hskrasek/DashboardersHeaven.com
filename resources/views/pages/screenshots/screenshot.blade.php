@@ -28,7 +28,7 @@
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
                 <a href="{{ $screenshot->url }}">
-                    <img src="{{ $screenshot->url }}" class="img-responsive"
+                    <img data-aload="{{ $screenshot->url }}" class="img-responsive"
                          alt="{{ $titles->generate($gamer, $screenshot) }}">
                 </a>
             </div>
