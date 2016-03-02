@@ -11,13 +11,13 @@ class ScreenshotController extends Controller
 {
     public function index()
     {
-        $clips = Screenshot::with(['game', 'gamer'])->orderBy('taken_at', 'desc')->paginate(16);
+        $screenshots = Screenshot::with(['game', 'gamer'])->orderBy('taken_at', 'desc')->paginate(16);
 
-        if (!$clips) {
-            app()->abort(404); //TODO: Probably make this better, maybe?
+        if (!$screenshots) {
+            app()->abort(404);
         }
 
-        return view('pages.screenshots.index', ['screenshots' => $clips]);
+        return view('pages.screenshots.index', ['screenshots' => $screenshots]);
     }
 
     public function screenshot(Request $request, $screenshotId)
@@ -42,6 +42,10 @@ class ScreenshotController extends Controller
         $screenshots = Screenshot::with('game')->whereHas('gamer', function ($query) use ($gamer) {
             $query->where('gamer_id', '=', $gamer->id);
         })->orderBy('taken_at', 'desc')->paginate(16);
+
+        if (!$screenshots) {
+            app()->abort(404);
+        }
 
         return view('pages.gamers.screenshots', ['gamer' => $gamer, 'screenshots' => $screenshots]);
     }

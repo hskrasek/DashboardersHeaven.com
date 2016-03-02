@@ -16,6 +16,10 @@ class GamersController extends Controller
     {
         $gamers = Gamer::with('games')->orderBy('gamertag')->get();
 
+        if (!$gamers) {
+            app()->abort(404);
+        }
+
         return view('pages.gamers.index', compact('gamers'));
     }
 
