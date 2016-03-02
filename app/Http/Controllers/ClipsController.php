@@ -6,9 +6,19 @@ use Illuminate\Http\Request;
 
 class ClipsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $clips = Clip::with(['game', 'gamer'])->orderBy('recorded_at', 'desc')->paginate(16);
+        $clips = Clip::with(['game', 'gamer'])->orderBy('recorded_at', 'desc');
+
+        if ($request->has('title_id')) {
+            $clips->where('title_id', $request->input('title_id'));
+        }
+
+        $clips = $clips->paginate(16);
+
+        if ($request->has('title_id')) {
+            $clips->appends($request->except('page'));
+        }
 
         if (!$clips) {
             app()->abort(404);
@@ -33,7 +43,7 @@ class ClipsController extends Controller
         $gamer = Gamer::whereGamertag($gamertag)->first();
 
         if (!$gamer) {
-            app()->abort(404); //TODO: Probably make this better, maybe?
+            app()->abort(404);
         }
 
         $clips = Clip::with('game')->whereHas('gamer', function ($query) use ($gamer) {

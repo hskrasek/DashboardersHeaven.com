@@ -21,9 +21,11 @@ class GamesController extends Controller
     public function gameInfo($title)
     {
         $game = Game::with([
-            'gamers',
+            'gamers' => function ($query) {
+                $query->orderBy('pivot_earned_achievements', 'desc');
+            },
             'clips' => function ($query) {
-                $query->limit(4);
+                $query->orderBy('recorded_at', 'desc')->limit(4);
             }
         ])->whereTitle($title)->first();
 
