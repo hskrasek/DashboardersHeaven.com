@@ -4,6 +4,7 @@ namespace DashboardersHeaven\Http\Controllers;
 
 use DashboardersHeaven\Gamer;
 use DashboardersHeaven\Http\Requests;
+use DB;
 
 class GamersController extends Controller
 {
@@ -14,13 +15,22 @@ class GamersController extends Controller
      */
     public function index()
     {
-        $gamers = Gamer::with('games')->orderBy('gamertag')->get();
+        $gamers = Gamer::select('id', 'xuid', 'gamertag', 'display_pic')->orderBy('gamertag')->get();
+        $counts = collect([
+            'clips'       => collect(DB::table('clips')->whereIn('xuid', $gamers->pluck('xuid'))
+                                       ->select(DB::raw('xuid, COUNT(id) AS count'))
+                                       ->groupBy('xuid')
+                                       ->get())->keyBy('xuid'),
+            'screenshots' => collect(DB::table('screenshots')->whereIn('gamer_id', $gamers->pluck('id'))
+                                       ->groupBy('gamer_id')
+                                       ->select(DB::raw('gamer_id, COUNT(id) AS count'))->get())->keyBy('gamer_id'),
+        ])->toArray();
 
         if (!$gamers) {
             app()->abort(404);
         }
 
-        return view('pages.gamers.index', compact('gamers'));
+        return view('pages.gamers.index', compact('gamers', 'counts'));
     }
 
     /**

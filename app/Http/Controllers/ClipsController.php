@@ -46,9 +46,7 @@ class ClipsController extends Controller
             app()->abort(404);
         }
 
-        $clips = Clip::with('game')->whereHas('gamer', function ($query) use ($gamer) {
-            $query->where('xuid', '=', $gamer->xuid);
-        })->orderBy('recorded_at', 'desc')->paginate(16);
+        $clips = Clip::with('game')->where('xuid', $gamer->xuid)->orderBy('recorded_at', 'desc')->paginate(16);
 
         return view('pages.gamers.clips', ['gamer' => $gamer, 'clips' => $clips]);
     }

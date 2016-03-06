@@ -36,11 +36,11 @@
                                     <h3 class="a1" data-animate="fadeInDown">{{ $gamer->gamertag }}</h3>
                                     <a href="{{ route('member', [$gamer->gamertag]) }}" class="dmbutton a2"
                                        data-animate="fadeInUp"><i class="fa fa-user"></i></a>
-                                    @if($gamer->clips->count() > 0)
+                                    @if(array_has($counts, "clips.{$gamer->xuid}"))
                                     <a href="{{ route('member.clips', [$gamer->gamertag]) }}" class="dmbutton a2"
                                        data-animate="fadeInUp"><i class="fa fa-video-camera"></i></a>
                                     @endif
-                                    @if($gamer->screenshots->count() > 0)
+                                    @if(array_has($counts, "screenshots.{$gamer->id}"))
                                     <a href="{{ route('member.screenshots', [$gamer->gamertag]) }}" class="dmbutton a2"
                                        data-animate="fadeInUp"><i class="fa fa-picture-o"></i></a>
                                     @endif
