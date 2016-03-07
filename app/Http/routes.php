@@ -46,6 +46,23 @@ Route::get('games/{title}', [
     'uses' => 'GamesController@gameInfo'
 ]);
 
+Route::get('photoshops', [
+    'as'   => 'photoshops',
+    'uses' => 'PhotoshopsController@index'
+]);
+
+Route::group(['prefix' => 'photoshops'], function () {
+    Route::get('requests', [
+        'as'   => 'photoshops.requests',
+        'uses' => 'PhotoshopsController@requests'
+    ]);
+
+    Route::post('requests', [
+        'as'   => 'photoshops.requests.submit',
+        'uses' => 'PhotoshopsController@saveRequest'
+    ]);
+});
+
 Route::get('/{gamertag}', [
     'as'   => 'member',
     'uses' => 'GamersController@show'
