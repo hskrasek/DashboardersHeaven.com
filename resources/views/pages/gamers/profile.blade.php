@@ -37,6 +37,7 @@
                         <p>
                             <strong>Gamerscore:</strong> {{ $gamer->gamerscore }}<br>
                             <strong>Years on Xbox Live:</strong> {{ $gamer->level }}<br>
+                            <strong>Status: @if($online) <span class="text-success">Online @else <span class="text-danger"> Offline @endif </span></strong><br>
                             @if(!empty($gamer->motto))
                                 <strong>Motto:</strong> {{ $gamer->motto }}<br>
                             @endif

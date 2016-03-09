@@ -5,6 +5,9 @@ namespace DashboardersHeaven\Http\Controllers;
 use DashboardersHeaven\Gamer;
 use DashboardersHeaven\Http\Requests;
 use DB;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\Psr7\Request;
 
 class GamersController extends Controller
 {
@@ -40,7 +43,7 @@ class GamersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($gamertag)
+    public function show(Client $client, $gamertag)
     {
         $gamer = Gamer::with([
             'games' => function ($query) {
@@ -49,10 +52,20 @@ class GamersController extends Controller
             }
         ])->whereGamertag($gamertag)->first();
 
+        $online = false;
+
+        try {
+            $request = new Request('GET', $client->getConfig('base_uri') . "/{$gamer->xuid}/presence");
+            $response = $client->send($request);
+            $response = json_decode((string) $response->getBody());
+            $online   = data_get($response, 'state') === 'Online' ? true : false;
+        } catch (RequestException $e) {
+        }
+
         if (empty($gamer)) {
             app()->abort(404);
         }
 
-        return view('pages.gamers.profile', compact('gamer'));
+        return view('pages.gamers.profile', compact('gamer', 'online'));
     }
 }
