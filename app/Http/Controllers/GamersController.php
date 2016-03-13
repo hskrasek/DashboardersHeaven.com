@@ -52,6 +52,10 @@ class GamersController extends Controller
             }
         ])->whereGamertag($gamertag)->first();
 
+        if (empty($gamer)) {
+            app()->abort(404);
+        }
+        
         $online = false;
 
         try {
@@ -60,10 +64,6 @@ class GamersController extends Controller
             $response = json_decode((string) $response->getBody());
             $online   = data_get($response, 'state') === 'Online' ? true : false;
         } catch (RequestException $e) {
-        }
-
-        if (empty($gamer)) {
-            app()->abort(404);
         }
 
         return view('pages.gamers.profile', compact('gamer', 'online'));
