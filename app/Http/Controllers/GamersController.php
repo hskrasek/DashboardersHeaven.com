@@ -55,7 +55,7 @@ class GamersController extends Controller
         if (empty($gamer)) {
             app()->abort(404);
         }
-        
+
         $online = false;
 
         try {

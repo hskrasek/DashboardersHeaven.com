@@ -42,6 +42,6 @@ elixir(function (mix) {
     ], null, 'resources/assets/');
 
     mix.version(['public/css/all.css', 'public/js/all.js']);
-    mix.copy(paths.bowerComponents + 'bootstrap/dist/fonts', 'public/build/fonts');
-    mix.copy(paths.bowerComponents + 'font-awesome/fonts', 'public/build/fonts');
+    mix.copy('resources/assets/' + paths.bowerComponents + 'bootstrap/dist/fonts', 'public/build/fonts');
+    mix.copy('resources/assets/' + paths.bowerComponents + 'font-awesome/fonts', 'public/build/fonts');
 });
