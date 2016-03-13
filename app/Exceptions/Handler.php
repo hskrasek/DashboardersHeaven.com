@@ -4,6 +4,9 @@ namespace DashboardersHeaven\Exceptions;
 
 use Bugsnag\BugsnagLaravel\BugsnagExceptionHandler as ExceptionHandler;
 use Exception;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\Validation\ValidationException;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
@@ -15,6 +18,9 @@ class Handler extends ExceptionHandler
      */
     protected $dontReport = [
         HttpException::class,
+        AuthorizationException::class,
+        ModelNotFoundException::class,
+        ValidationException::class,
     ];
 
     /**
