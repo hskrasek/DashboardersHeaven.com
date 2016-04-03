@@ -6,12 +6,22 @@ use DashboardersHeaven\Gamer;
 use DashboardersHeaven\Http\Requests;
 use DashboardersHeaven\Http\Requests\PhotoshopRequest;
 use DashboardersHeaven\Photoshop;
+use DashboardersHeaven\Services\Photoshops\Factory as PhotoshopFactory;
 
 class PhotoshopsController extends Controller
 {
     public function index()
     {
+        $photoshops = Photoshop::with(['gamer'])->whereCompleted(true)->orderBy('created_at', 'desc')->get();
 
+        return view('pages.photoshops.index', ['photoshops' => $photoshops]);
+    }
+
+    public function view($id)
+    {
+        $photoshop = Photoshop::find($id);
+
+        return $photoshop->toJson();
     }
 
     public function requests()
@@ -23,13 +33,8 @@ class PhotoshopsController extends Controller
 
     public function saveRequest(PhotoshopRequest $request)
     {
-        Photoshop::create([
-            'title'       => $request->input('title'),
-            'description' => $request->input('description'),
-            'gamer_id'    => $request->input('requestee'),
-            'media'       => json_encode(array_map('trim', explode(PHP_EOL, $request->input('sources')))),
-        ]);
+        PhotoshopFactory::makeFromRequest($request);
 
-        return redirect('/');
+        return redirect()->route('photoshops.requests');
     }
 }

@@ -22,9 +22,10 @@ class PhotoshopRequest extends Request
     public function rules()
     {
         return [
-            'title'       => 'sometimes',
+            'title'       => 'sometimes|required',
             'description' => 'required',
             'requestee'   => 'required',
+            'sources'     => 'sometimes|required'
         ];
     }
 }

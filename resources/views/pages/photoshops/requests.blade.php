@@ -62,29 +62,3 @@
         </div>
     </div>
 @endsection
-
-@section('scripts')
-    <script type="application/javascript">
-        $(function () {
-            $(document).on('click', '.btn-add', function (e) {
-                e.preventDefault();
-
-                var controlForm = $('.controls form:first'),
-                        currentEntry = $(this).parents('.entry:first'),
-                        newEntry = $(currentEntry.clone()).appendTo(controlForm);
-
-                newEntry.find('input').val('');
-                newEntry.find('input').attr('id', newEntry.find('input').attr('id') + 1);
-                controlForm.find('.entry:not(:last) .btn-add')
-                        .removeClass('btn-add').addClass('btn-remove')
-                        .removeClass('btn-success').addClass('btn-danger')
-                        .html('<span class="glyphicon glyphicon-minus"></span>');
-            }).on('click', '.btn-remove', function (e) {
-                $(this).parents('.entry:first').remove();
-
-                e.preventDefault();
-                return false;
-            });
-        });
-    </script>
-@endsection
