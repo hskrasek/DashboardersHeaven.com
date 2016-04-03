@@ -43,4 +43,9 @@ class Photoshop extends Model
     protected $casts = [
         'media' => 'array'
     ];
+
+    public function gamer()
+    {
+        return $this->belongsTo(Gamer::class);
+    }
 }

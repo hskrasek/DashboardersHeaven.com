@@ -52,6 +52,11 @@ Route::get('photoshops', [
 ]);
 
 Route::group(['prefix' => 'photoshops'], function () {
+    Route::get('{id}', [
+        'as'   => 'photoshops.view',
+        'uses' => 'PhotoshopsController@view'
+    ]);
+
     Route::get('requests', [
         'as'   => 'photoshops.requests',
         'uses' => 'PhotoshopsController@requests'
