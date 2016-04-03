@@ -31,11 +31,14 @@
 <script src="{{ elixir("js/all.js") }}"></script>
 
 <script src="//vjs.zencdn.net/5.4.6/video.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.3/moment-timezone-with-data.js"></script>
+
 <script type="application/javascript">
     $('time').each(function (i, e) {
-        var time = moment($(e).attr('datetime'));
-        $(e).html(time.fromNow());
+        var time = moment.tz($(e).attr('datetime'), 'UTC');
+        var timeZone = moment.tz.guess();
+        $(e).html(time.tz(timeZone).fromNow());
     });
 </script>
 
