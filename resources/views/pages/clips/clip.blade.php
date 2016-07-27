@@ -3,8 +3,12 @@
 
 @section('head')
     <meta property="og:title" content="{{ $titles->generate($gamer, $clip) }}"/>
-    <meta property="og:type" content="website"/>
+    <meta property="og:type" content="video"/>
     <meta property="og:url" content="{{ route('clip', [$gamer->gamertag, $clip->clip_id]) }}"/>
+    <meta property="og:video" content="{{ $clip->url }}"/>
+    <meta property="og:video:type" content="video/mp4"/>
+    <meta property="og:video:width" content="640"/>
+    <meta property="og:video:height" content="480"/>
     <meta property="og:image" content="{{ $clip->thumbnail_small }}"/>
     {{-- TODO: Change this to a clip description if we ever allow for custom descriptions.--}}
     <meta property="og:description" content="{{ $titles->generate($gamer, $clip) }}"/>

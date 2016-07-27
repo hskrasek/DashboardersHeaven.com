@@ -3,11 +3,13 @@
 
 @section('head')
     <meta property="og:title" content="{{ $titles->generate($gamer, $screenshot) }}"/>
-    <meta property="og:type" content="website"/>
+    <meta property="og:type" content="image"/>
     <meta property="og:url" content="{{ route('screenshot', [$gamer->gamertag, $screenshot->screenshot_id]) }}"/>
     <meta property="og:image" content="{{ $screenshot->thumbnail_small }}"/>
     {{-- TODO: Change this to a screenshot description if we ever allow for custom descriptions.--}}
     <meta property="og:description" content="{{ $titles->generate($gamer, $screenshot) }}"/>
+    <meta property="og:image:width" content="{{ $screenshot->width }}"/>
+    <meta property="og:image:height" content="{{ $screenshot->height }}"/>
 @endsection
 
 @section('title')
