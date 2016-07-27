@@ -6,6 +6,8 @@
     <meta property="og:type" content="video"/>
     <meta property="og:url" content="{{ route('clip', [$gamer->gamertag, $clip->clip_id]) }}"/>
     <meta property="og:video" content="{{ $clip->url }}"/>
+    <meta property="og:video:url" content="{{ $clip->url }}"/>
+    <meta property="og:video:secure_url" content="{{ $clip->url }}"/>
     <meta property="og:video:type" content="video/mp4"/>
     <meta property="og:video:width" content="640"/>
     <meta property="og:video:height" content="480"/>
