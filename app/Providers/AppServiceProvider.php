@@ -1,12 +1,9 @@
 <?php namespace DashboardersHeaven\Providers;
 
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
-use DashboardersHeaven\Events\GameCreated;
-use DashboardersHeaven\Game;
-use DashboardersHeaven\Services\TitleService;
+use DashboardersHeaven\Jobs\DownloadMedia;
+use DashboardersHeaven\Services\Titles\TitleService;
 use Illuminate\Support\ServiceProvider;
-use Monolog\Formatter\LineFormatter;
-use Monolog\Handler\SyslogHandler;
 
 class AppServiceProvider extends ServiceProvider
 {
