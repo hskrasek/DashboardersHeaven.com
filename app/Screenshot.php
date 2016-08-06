@@ -56,7 +56,8 @@ class Screenshot extends Model
         'saved',
         'expired',
         'taken_at',
-        'expires_at'
+        'expires_at',
+        'downloaded',
     ];
 
     public function game()
