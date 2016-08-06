@@ -5,8 +5,10 @@ namespace DashboardersHeaven\Console\Commands;
 use Carbon\Carbon;
 use DashboardersHeaven\Clip;
 use DashboardersHeaven\Gamer;
+use DashboardersHeaven\Jobs\DownloadMedia;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Bus\Dispatcher;
 
 class UpdateGamersClipsCommand extends Command
 {
@@ -28,12 +30,22 @@ class UpdateGamersClipsCommand extends Command
      * @var \GuzzleHttp\Client
      */
     protected $client;
+
+    /**
+     * @var \DashboardersHeaven\Gamer
+     */
     protected $gamer;
 
-    public function __construct(Client $client)
+    /**
+     * @var \Illuminate\Contracts\Bus\Dispatcher
+     */
+    private $dispatcher;
+
+    public function __construct(Client $client, Dispatcher $dispatcher)
     {
         parent::__construct();
-        $this->client = $client;
+        $this->client     = $client;
+        $this->dispatcher = $dispatcher;
     }
 
     /**
@@ -75,6 +87,8 @@ class UpdateGamersClipsCommand extends Command
             } else {
                 $clip = Clip::create($clipData);
             }
+
+            $this->dispatcher->dispatch(new DownloadMedia($clip));
         }
     }
 

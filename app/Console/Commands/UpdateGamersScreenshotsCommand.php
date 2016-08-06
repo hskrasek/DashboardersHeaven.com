@@ -4,9 +4,11 @@ namespace DashboardersHeaven\Console\Commands;
 
 use Carbon\Carbon;
 use DashboardersHeaven\Gamer;
+use DashboardersHeaven\Jobs\DownloadMedia;
 use DashboardersHeaven\Screenshot;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
+use Illuminate\Contracts\Bus\Dispatcher;
 
 class UpdateGamersScreenshotsCommand extends Command
 {
@@ -34,10 +36,16 @@ class UpdateGamersScreenshotsCommand extends Command
      */
     protected $gamer;
 
-    public function __construct(Client $client)
+    /**
+     * @var \Illuminate\Contracts\Bus\Dispatcher
+     */
+    private $dispatcher;
+
+    public function __construct(Client $client, Dispatcher $dispatcher)
     {
         parent::__construct();
-        $this->client = $client;
+        $this->client     = $client;
+        $this->dispatcher = $dispatcher;
     }
 
     /**
@@ -76,10 +84,12 @@ class UpdateGamersScreenshotsCommand extends Command
 
             if (!empty($screenshot)) {
                 $screenshot->update($screenshotData);
+                $this->dispatcher->dispatch(new DownloadMedia($screenshot));
                 continue;
             }
 
-            $this->gamer->screenshots()->save(new Screenshot($screenshotData));
+            $this->gamer->screenshots()->save($screenshot = new Screenshot($screenshotData));
+            $this->dispatcher->dispatch(new DownloadMedia($screenshot));
         }
     }
 
