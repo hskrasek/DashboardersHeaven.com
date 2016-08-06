@@ -51,7 +51,8 @@ class Clip extends Model
         'url',
         'saved',
         'recorded_at',
-        'expired'
+        'expired',
+        'downloaded',
     ];
 
     protected $dates = [
