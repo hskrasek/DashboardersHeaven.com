@@ -28,7 +28,9 @@ return [
     |
     */
 
-    'url' => 'http://localhost',
+    'url' => env('URL', 'http://localhost'),
+
+    'cdn_url' => env('CDN_URL'),
     /*
     |--------------------------------------------------------------------------
     | Application Timezone
