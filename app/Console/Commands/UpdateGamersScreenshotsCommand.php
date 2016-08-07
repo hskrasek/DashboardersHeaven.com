@@ -84,12 +84,12 @@ class UpdateGamersScreenshotsCommand extends Command
 
             if (!empty($screenshot)) {
                 $screenshot->update($screenshotData);
-                $this->dispatcher->dispatch(new DownloadMedia($screenshot));
+//                $this->dispatcher->dispatch(new DownloadMedia($screenshot));
                 continue;
             }
 
             $this->gamer->screenshots()->save($screenshot = new Screenshot($screenshotData));
-            $this->dispatcher->dispatch(new DownloadMedia($screenshot));
+//            $this->dispatcher->dispatch(new DownloadMedia($screenshot));
         }
     }
 

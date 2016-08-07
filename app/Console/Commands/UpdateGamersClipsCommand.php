@@ -88,7 +88,7 @@ class UpdateGamersClipsCommand extends Command
                 $clip = Clip::create($clipData);
             }
 
-            $this->dispatcher->dispatch(new DownloadMedia($clip));
+//            $this->dispatcher->dispatch(new DownloadMedia($clip));
         }
     }
 
