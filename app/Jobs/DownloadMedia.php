@@ -33,7 +33,7 @@ class DownloadMedia extends Job implements ShouldQueue
      */
     public function handle(Filesystem $filesystem, Repository $config)
     {
-        $domain = $config->get('app.url');
+        $domain = $config->get('app.cdn_url');
         if (strpos($this->media->url, $domain)) {
             return;
         }
