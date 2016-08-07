@@ -2,6 +2,7 @@
 
 namespace DashboardersHeaven\Jobs;
 
+use DashboardersHeaven\Clip;
 use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -58,7 +59,7 @@ class DownloadMedia extends Job implements ShouldQueue
      */
     private function getFileName()
     {
-        return (string) Uuid::uuid5(Uuid::NAMESPACE_DNS, $this->getParsedUrl()) . '.MP4';
+        return (string) Uuid::uuid5(Uuid::NAMESPACE_DNS, $this->getParsedUrl()) . ($this->media instanceof Clip) ? '.MP4' : '.PNG';
     }
 
     private function getPath($filename)
