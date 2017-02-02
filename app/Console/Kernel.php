@@ -63,4 +63,13 @@ class Kernel extends ConsoleKernel
                      ->sendOutputTo(storage_path("logs/commands/{$safeGamertag}-screenshots.log"));
         }
     }
+    /**
+     * Register the Closure based commands for the application.
+     *
+     * @return void
+     */
+    protected function commands()
+    {
+        require base_path('routes/console.php');
+    }
 }
