@@ -1,8 +1,9 @@
 <?php
 
 namespace DashboardersHeaven\Http\Requests;
+use Illuminate\Foundation\Http\FormRequest;
 
-class PhotoshopRequest extends Request
+class PhotoshopRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
