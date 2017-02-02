@@ -1,6 +1,7 @@
 <?php
 
 namespace DashboardersHeaven\Http\Requests;
+
 use Illuminate\Foundation\Http\FormRequest;
 
 class PhotoshopRequest extends FormRequest

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace DashboardersHeaven\Http\Controllers\Auth;
 
-use App\User;
+use DashboardersHeaven\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use DashboardersHeaven\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
