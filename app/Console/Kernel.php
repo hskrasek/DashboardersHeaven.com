@@ -35,33 +35,32 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $gamers = Gamer::all();
+        foreach ($gamers as $gamer) {
+            $safeGamertag = str_replace(' ', '_', $gamer->gamertag);
+            $schedule->command('games:update')
+                     ->name('Update games')
+                     ->daily()
+                     ->withoutOverlapping()
+                     ->sendOutputTo(storage_path("logs/commands/games-update.log"));
 
-//        $gamers = Gamer::all();
-//        foreach ($gamers as $gamer) {
-//            $safeGamertag = str_replace(' ', '_', $gamer->gamertag);
-//            $schedule->command('games:update')
-//                     ->name('Update games')
-//                     ->daily()
-//                     ->withoutOverlapping()
-//                     ->sendOutputTo(storage_path("logs/commands/games-update.log"));
-//
-//            $schedule->command('gamers', [$gamer->xuid])
-//                     ->name('Update ' . $gamer->gamertag)
-//                     ->hourly()
-//                     ->withoutOverlapping()
-//                     ->sendOutputTo(storage_path("logs/commands/{$safeGamertag}.log"));
-//
-//            $schedule->command('gamers:clips', [$gamer->xuid])
-//                     ->name('Update ' . $gamer->gamertag . '\'s clips')
-//                     ->everyThirtyMinutes()
-//                     ->withoutOverlapping()
-//                     ->sendOutputTo(storage_path("logs/commands/{$safeGamertag}-clips.log"));
-//
-//            $schedule->command('gamers:screenshots', [$gamer->xuid])
-//                     ->name('Update ' . $gamer->gamertag . '\'s screenshots')
-//                     ->everyThirtyMinutes()
-//                     ->withoutOverlapping()
-//                     ->sendOutputTo(storage_path("logs/commands/{$safeGamertag}-screenshots.log"));
-//        }
+            $schedule->command('gamers', [$gamer->xuid])
+                     ->name('Update ' . $gamer->gamertag)
+                     ->hourly()
+                     ->withoutOverlapping()
+                     ->sendOutputTo(storage_path("logs/commands/{$safeGamertag}.log"));
+
+            $schedule->command('gamers:clips', [$gamer->xuid])
+                     ->name('Update ' . $gamer->gamertag . '\'s clips')
+                     ->everyThirtyMinutes()
+                     ->withoutOverlapping()
+                     ->sendOutputTo(storage_path("logs/commands/{$safeGamertag}-clips.log"));
+
+            $schedule->command('gamers:screenshots', [$gamer->xuid])
+                     ->name('Update ' . $gamer->gamertag . '\'s screenshots')
+                     ->everyThirtyMinutes()
+                     ->withoutOverlapping()
+                     ->sendOutputTo(storage_path("logs/commands/{$safeGamertag}-screenshots.log"));
+        }
     }
 }
