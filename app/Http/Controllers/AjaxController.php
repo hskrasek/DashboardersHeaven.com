@@ -18,10 +18,10 @@ class AjaxController extends Controller
                  ->groupBy(DB::raw('DATE(created_at)'))
                  ->orderBy('created_at', 'DESC');
 
-        $gamerscores = collect(DB::table(DB::raw("({$sub->toSql()}) as sub"))
-                                 ->mergeBindings($sub)
-                                 ->groupBy('score')
-                                 ->get());
+        $gamerscores = DB::table(DB::raw("({$sub->toSql()}) as sub"))
+                         ->mergeBindings($sub)
+                         ->groupBy('score')
+                         ->get();
 
         return Response::json([
             'x'          => $gamerscores->pluck('date'),

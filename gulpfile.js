@@ -1,4 +1,6 @@
-var elixir = require('laravel-elixir');
+const elixir = require('laravel-elixir');
+
+require('laravel-elixir-vue-2');
 
 /*
  |--------------------------------------------------------------------------
@@ -14,7 +16,7 @@ var elixir = require('laravel-elixir');
 var paths = {
     jquery: 'vendor/jquery/',
     bootstrap: 'vendor/bootstrap/',
-    bowerComponents: 'bower_components/',
+    bowerComponents: 'bower_components/'
 };
 
 elixir(function (mix) {
@@ -25,7 +27,7 @@ elixir(function (mix) {
         'css/' + paths.bootstrap + 'bootstrap-solid-theme.css',
         paths.bowerComponents + 'font-awesome/css/font-awesome.min.css',
         paths.bowerComponents + 'c3/c3.css',
-        'css/custom.css',
+        'css/custom.css'
     ], null, 'resources/assets/');
 
     mix.scripts([
