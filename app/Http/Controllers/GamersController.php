@@ -3,7 +3,6 @@
 namespace DashboardersHeaven\Http\Controllers;
 
 use DashboardersHeaven\Gamer;
-use DashboardersHeaven\Http\Requests;
 use DB;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
@@ -20,10 +19,10 @@ class GamersController extends Controller
     {
         $gamers = Gamer::select('id', 'xuid', 'gamertag', 'display_pic')->orderBy('gamertag')->get();
         $counts = collect([
-            'clips'       => collect(DB::table('clips')->whereIn('xuid', $gamers->pluck('xuid'))
-                                       ->select(DB::raw('xuid, COUNT(id) AS count'))
-                                       ->groupBy('xuid')
-                                       ->get())->keyBy('xuid'),
+            'clips'       => DB::table('clips')->whereIn('xuid', $gamers->pluck('xuid'))
+                               ->select(DB::raw('xuid, COUNT(id) AS count'))
+                               ->groupBy('xuid')
+                               ->get()->keyBy('xuid'),
             'screenshots' => collect(DB::table('screenshots')->whereIn('gamer_id', $gamers->pluck('id'))
                                        ->groupBy('gamer_id')
                                        ->select(DB::raw('gamer_id, COUNT(id) AS count'))->get())->keyBy('gamer_id'),
@@ -39,7 +38,8 @@ class GamersController extends Controller
     /**
      * Display the gamers profile.
      *
-     * @param string $gamertag
+     * @param \GuzzleHttp\Client $client
+     * @param string             $gamertag
      *
      * @return \Illuminate\Http\Response
      */
@@ -59,7 +59,7 @@ class GamersController extends Controller
         $online = false;
 
         try {
-            $request = new Request('GET', $client->getConfig('base_uri') . "/{$gamer->xuid}/presence");
+            $request  = new Request('GET', $client->getConfig('base_uri') . "/{$gamer->xuid}/presence");
             $response = $client->send($request);
             $response = json_decode((string) $response->getBody());
             $online   = data_get($response, 'state') === 'Online' ? true : false;

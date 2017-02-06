@@ -2,7 +2,9 @@
 
 namespace DashboardersHeaven\Http\Requests;
 
-class PhotoshopRequest extends Request
+use Illuminate\Foundation\Http\FormRequest;
+
+class PhotoshopRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
