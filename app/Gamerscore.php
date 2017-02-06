@@ -32,6 +32,6 @@ class Gamerscore extends Model
      */
     public function gamer()
     {
-        $this->belongsTo('DashboardersHeaven\Gamer');
+        $this->belongsTo(\DashboardersHeaven\Gamer::class);
     }
 }

@@ -66,7 +66,7 @@ class Clip extends Model
      */
     public function game()
     {
-        return $this->belongsTo('DashboardersHeaven\Game', 'title_id', 'title_id');
+        return $this->belongsTo(\DashboardersHeaven\Game::class, 'title_id', 'title_id');
     }
 
     /**
@@ -76,6 +76,6 @@ class Clip extends Model
      */
     public function gamer()
     {
-        return $this->belongsTo('DashboardersHeaven\Gamer', 'xuid', 'xuid');
+        return $this->belongsTo(\DashboardersHeaven\Gamer::class, 'xuid', 'xuid');
     }
 }

@@ -55,7 +55,7 @@ class Game extends Model
 
     public function gamers()
     {
-        return $this->belongsToMany('DashboardersHeaven\Gamer')
+        return $this->belongsToMany(\DashboardersHeaven\Gamer::class)
                     ->withPivot([
                         'earned_achievements',
                         'current_gamerscore',
@@ -72,7 +72,7 @@ class Game extends Model
      */
     public function clips()
     {
-        return $this->hasMany('DashboardersHeaven\Clip', 'title_id', 'title_id');
+        return $this->hasMany(\DashboardersHeaven\Clip::class, 'title_id', 'title_id');
     }
 
     /**
