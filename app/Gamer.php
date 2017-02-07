@@ -110,11 +110,16 @@ class Gamer extends Model
         return $this->hasMany(\DashboardersHeaven\Screenshot::class, 'gamer_id', 'id');
     }
 
+    public function newPivot(Model $parent, array $attributes, $table, $exists, $using = null)
+    {
+        return new GamesGamersPivot($parent, $attributes, $table, $exists, $using);
+    }
+
     /**
      * {@inheritdoc}
      */
-    public function newPivot(Model $parent, array $attributes, $table, $exists)
-    {
-        return new GamesGamersPivot($parent, $attributes, $table, $exists);
-    }
+//    public function newPivot(Model $parent, array $attributes, $table, $exists)
+//    {
+//        return new GamesGamersPivot($parent, $attributes, $table, $exists);
+//    }
 }
