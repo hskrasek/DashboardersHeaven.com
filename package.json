@@ -15,6 +15,7 @@
     "vue": "^2.0.1"
   },
   "dependencies": {
+    "gulp-cli": "^1.2.2",
     "laravel-elixir": "^6.0.0-15"
   }
 }
