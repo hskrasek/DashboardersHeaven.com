@@ -114,12 +114,4 @@ class Gamer extends Model
     {
         return new GamesGamersPivot($parent, $attributes, $table, $exists, $using);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-//    public function newPivot(Model $parent, array $attributes, $table, $exists)
-//    {
-//        return new GamesGamersPivot($parent, $attributes, $table, $exists);
-//    }
 }
