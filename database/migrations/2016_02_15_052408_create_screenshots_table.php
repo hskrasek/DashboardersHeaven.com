@@ -22,11 +22,10 @@ class CreateScreenshotsTable extends Migration
             $table->string('thumbnail_small', 2000)->nullable();
             $table->string('thumbnail_large', 2000)->nullable();
             $table->string('url', 2000)->nullable();
-
             $table->boolean('saved')->default(false);
             $table->boolean('expired')->default(false);
-            $table->timestamp('expires_at');
-            $table->timestamp('taken_at');
+            $table->timestamp('expires_at')->nullable();
+            $table->timestamp('taken_at')->nullable();
             $table->timestamps();
 
             $table->index('screenshot_id');

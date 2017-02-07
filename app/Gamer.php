@@ -70,7 +70,7 @@ class Gamer extends Model
      */
     public function gamerscores()
     {
-        return $this->hasMany('DashboardersHeaven\Gamerscore');
+        return $this->hasMany(\DashboardersHeaven\Gamerscore::class);
     }
 
     /**
@@ -80,7 +80,7 @@ class Gamer extends Model
      */
     public function games()
     {
-        return $this->belongsToMany('DashboardersHeaven\Game')
+        return $this->belongsToMany(\DashboardersHeaven\Game::class)
                     ->withPivot([
                         'earned_achievements',
                         'current_gamerscore',
@@ -97,7 +97,7 @@ class Gamer extends Model
      */
     public function clips()
     {
-        return $this->hasMany('DashboardersHeaven\Clip', 'xuid', 'xuid');
+        return $this->hasMany(\DashboardersHeaven\Clip::class, 'xuid', 'xuid');
     }
 
     /**
@@ -107,14 +107,19 @@ class Gamer extends Model
      */
     public function screenshots()
     {
-        return $this->hasMany('DashboardersHeaven\Screenshot', 'gamer_id', 'id');
+        return $this->hasMany(\DashboardersHeaven\Screenshot::class, 'gamer_id', 'id');
+    }
+
+    public function newPivot(Model $parent, array $attributes, $table, $exists, $using = null)
+    {
+        return new GamesGamersPivot($parent, $attributes, $table, $exists, $using);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function newPivot(Model $parent, array $attributes, $table, $exists)
-    {
-        return new GamesGamersPivot($parent, $attributes, $table, $exists);
-    }
+//    public function newPivot(Model $parent, array $attributes, $table, $exists)
+//    {
+//        return new GamesGamersPivot($parent, $attributes, $table, $exists);
+//    }
 }
