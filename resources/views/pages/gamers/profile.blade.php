@@ -96,8 +96,8 @@
                         format: '%e %b %y',
                         rotate: 65,
                         multiline: true,
-                        fit: true,
-                    },
+                        fit: true
+                    }
                 },
                 y: {
                     label: {

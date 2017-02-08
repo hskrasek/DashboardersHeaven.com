@@ -15,17 +15,34 @@ class AjaxController extends Controller
         $sub = DB::table('gamerscores')
                  ->select(DB::raw('score as score, DATE(created_at) as date'))
                  ->where('gamer_id', $gamerId)
-                 ->groupBy(DB::raw('DATE(created_at)'))
-                 ->orderBy('created_at', 'DESC');
+                 ->groupBy(DB::raw('DATE(created_at)'), 'score')
+                 ->orderBy(DB::raw('DATE(created_at)'), 'DESC')
+                 ->orderBy('score', 'DESC');
 
         $gamerscores = DB::table(DB::raw("({$sub->toSql()}) as sub"))
                          ->mergeBindings($sub)
-                         ->groupBy('score')
+                         ->groupBy('score', 'date')
                          ->get();
 
+        $gamerscores = $gamerscores->groupBy(function ($gamerscore) {
+            return Carbon::parse($gamerscore->date)->year;
+        })->transform(function ($yearCollection) {
+            /** @var \Illuminate\Support\Collection $yearCollection */
+            return $yearCollection->groupBy(function ($gamerscore) {
+                return Carbon::parse($gamerscore->date)->month;
+            })->map(function ($monthCollection) {
+                /** @var \Illuminate\Support\Collection $monthCollection */
+                return $monthCollection->sortByDesc('date')->first();
+            });
+        })->collapse()->keyBy(function ($value, $_) {
+            return $value->date;
+        })->map(function ($value) {
+            return $value->score;
+        });
+
         return Response::json([
-            'x'          => $gamerscores->pluck('date'),
-            'gamerscore' => $gamerscores->pluck('score'),
+            'x'          => $gamerscores->keys(),
+            'gamerscore' => $gamerscores->values(),
         ]);
     }
 }
