@@ -122,7 +122,7 @@ class UpdateGamersClipsCommand extends Command
         Bugsnag::leaveBreadcrumb(
             'Processed clip data',
             \Bugsnag\Breadcrumbs\Breadcrumb::MANUAL_TYPE,
-            $clipData + $clip
+            $clipData + (array)$clip
         );
 
         return $clipData;
