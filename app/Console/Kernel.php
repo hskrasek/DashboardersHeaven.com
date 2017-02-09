@@ -24,6 +24,7 @@ class Kernel extends ConsoleKernel
         UpdateGamersClipsCommand::class,
         UpdateGamesCommand::class,
         UpdateGamersScreenshotsCommand::class,
+        \Bugsnag\BugsnagLaravel\Commands\DeployCommand::class,
     ];
 
     /**
@@ -63,6 +64,7 @@ class Kernel extends ConsoleKernel
                      ->sendOutputTo(storage_path("logs/commands/{$safeGamertag}-screenshots.log"));
         }
     }
+
     /**
      * Register the Closure based commands for the application.
      *
