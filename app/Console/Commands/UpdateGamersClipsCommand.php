@@ -63,6 +63,11 @@ class UpdateGamersClipsCommand extends Command
 
     private function getClips($xuid)
     {
+        Bugsnag::leaveBreadcrumb(
+            'Getting clips for ' . $this->gamer->gamertag,
+            \Bugsnag\Breadcrumbs\Breadcrumb::MANUAL_TYPE,
+            $this->gamer->toArray()
+        );
         $this->info('Getting the game clips for ' . $xuid);
 
         $response = $this->client->get("v2/$xuid/game-clips");
