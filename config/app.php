@@ -146,6 +146,11 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
+        Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
@@ -154,10 +159,6 @@ return [
         DashboardersHeaven\Providers\EventServiceProvider::class,
         DashboardersHeaven\Providers\RouteServiceProvider::class,
         DashboardersHeaven\Providers\XboxAPIServiceProvider::class,
-
-        Barryvdh\Debugbar\ServiceProvider::class,
-        Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider::class,
-        Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
     ],
     /*
     |--------------------------------------------------------------------------

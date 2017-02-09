@@ -1,7 +1,6 @@
 <?php namespace DashboardersHeaven\Providers;
 
 use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
-use DashboardersHeaven\Jobs\DownloadMedia;
 use DashboardersHeaven\Services\Titles\TitleService;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,5 +29,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(TitleService::class, function () {
             return new TitleService;
         });
+
+        $this->app->alias('bugsnag.logger', \Illuminate\Contracts\Logging\Log::class);
+        $this->app->alias('bugsnag.logger', \Psr\Log\LoggerInterface::class);
     }
 }

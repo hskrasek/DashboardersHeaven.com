@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b05a4f4137657a3d699fb7e6e0cac3f",
+    "content-hash": "16179e27eb8134bc13315be319bf99fc",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -62,33 +62,37 @@
         },
         {
             "name": "bugsnag/bugsnag",
-            "version": "v2.9.2",
+            "version": "v3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bugsnag/bugsnag-php.git",
-                "reference": "5ef2dbeec81310a9c6f1af2400dbe8d9af8b07ff"
+                "reference": "c3b05a18f9116ac7cb4984fd7ee0614fe4490176"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bugsnag/bugsnag-php/zipball/5ef2dbeec81310a9c6f1af2400dbe8d9af8b07ff",
-                "reference": "5ef2dbeec81310a9c6f1af2400dbe8d9af8b07ff",
+                "url": "https://api.github.com/repos/bugsnag/bugsnag-php/zipball/c3b05a18f9116ac7cb4984fd7ee0614fe4490176",
+                "reference": "c3b05a18f9116ac7cb4984fd7ee0614fe4490176",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2.0"
+                "composer/ca-bundle": "^1.0",
+                "guzzlehttp/guzzle": "^5.0|^6.0",
+                "php": ">=5.5"
             },
             "require-dev": {
+                "mtdowling/burgomaster": "dev-master#72151eddf5f0cf101502b94bf5031f9c53501a04",
+                "php-mock/php-mock-phpunit": "^1.1",
                 "phpunit/phpunit": "^4.8|^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.9-dev"
+                    "dev-master": "3.4-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Bugsnag_": "src/"
+                "psr-4": {
+                    "Bugsnag\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -111,33 +115,42 @@
                 "logging",
                 "tracking"
             ],
-            "time": "2016-07-21T20:18:41+00:00"
+            "time": "2016-09-05T15:23:22+00:00"
         },
         {
             "name": "bugsnag/bugsnag-laravel",
-            "version": "v1.7.0",
+            "version": "v2.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bugsnag/bugsnag-laravel.git",
-                "reference": "54758847fd546355fdec9f87555a0b6dc76da9ea"
+                "reference": "b067bef4e2d87b92d4d554d511b7b262af17586d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bugsnag/bugsnag-laravel/zipball/54758847fd546355fdec9f87555a0b6dc76da9ea",
-                "reference": "54758847fd546355fdec9f87555a0b6dc76da9ea",
+                "url": "https://api.github.com/repos/bugsnag/bugsnag-laravel/zipball/b067bef4e2d87b92d4d554d511b7b262af17586d",
+                "reference": "b067bef4e2d87b92d4d554d511b7b262af17586d",
                 "shasum": ""
             },
             "require": {
-                "bugsnag/bugsnag": "^2.5",
-                "illuminate/support": "^4.0|^5.0",
-                "php": ">=5.3.0"
+                "bugsnag/bugsnag": "^3.4",
+                "bugsnag/bugsnag-psr-logger": "^1.1",
+                "illuminate/contracts": "^5.0",
+                "illuminate/support": "^5.0",
+                "php": ">=5.5"
             },
             "require-dev": {
+                "graham-campbell/testbench": "^3.1",
+                "mockery/mockery": "^0.9.4",
                 "phpunit/phpunit": "^4.8|^5.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                }
+            },
             "autoload": {
-                "psr-0": {
+                "psr-4": {
                     "Bugsnag\\BugsnagLaravel\\": "src/"
                 }
             },
@@ -161,7 +174,123 @@
                 "logging",
                 "tracking"
             ],
-            "time": "2016-07-07T01:35:07+00:00"
+            "time": "2016-09-08T08:33:45+00:00"
+        },
+        {
+            "name": "bugsnag/bugsnag-psr-logger",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bugsnag/bugsnag-psr-logger.git",
+                "reference": "355989a16373936a7854ac26cea46d9dd80f0371"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bugsnag/bugsnag-psr-logger/zipball/355989a16373936a7854ac26cea46d9dd80f0371",
+                "reference": "355989a16373936a7854ac26cea46d9dd80f0371",
+                "shasum": ""
+            },
+            "require": {
+                "bugsnag/bugsnag": "^3.2",
+                "php": ">=5.5",
+                "psr/log": "^1.0"
+            },
+            "require-dev": {
+                "graham-campbell/testbench-core": "^1.1",
+                "mockery/mockery": "^0.9.4",
+                "phpunit/phpunit": "^4.8|^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bugsnag\\PsrLogger\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "James Smith",
+                    "email": "notifiers@bugsnag.com",
+                    "homepage": "https://bugsnag.com"
+                }
+            ],
+            "description": "Official Bugsnag PHP PSR Logger.",
+            "homepage": "https://github.com/bugsnag/bugsnag-psr",
+            "keywords": [
+                "bugsnag",
+                "errors",
+                "exceptions",
+                "logging",
+                "psr",
+                "tracking"
+            ],
+            "time": "2016-08-09T08:02:38+00:00"
+        },
+        {
+            "name": "composer/ca-bundle",
+            "version": "1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/ca-bundle.git",
+                "reference": "a795611394b3c05164fd0eb291b492b39339cba4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/a795611394b3c05164fd0eb291b492b39339cba4",
+                "reference": "a795611394b3c05164fd0eb291b492b39339cba4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-openssl": "*",
+                "ext-pcre": "*",
+                "php": "^5.3.2 || ^7.0"
+            },
+            "require-dev": {
+                "psr/log": "^1.0",
+                "symfony/process": "^2.5 || ^3.0"
+            },
+            "suggest": {
+                "symfony/process": "This is necessary to reliably check whether openssl_x509_parse is vulnerable on older php versions, but can be ignored on PHP 5.5.6+"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Composer\\CaBundle\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be"
+                }
+            ],
+            "description": "Lets you find a path to the system CA bundle, and includes a fallback to the Mozilla CA bundle.",
+            "keywords": [
+                "cabundle",
+                "cacert",
+                "certificate",
+                "ssl",
+                "tls"
+            ],
+            "time": "2016-11-02T18:11:27+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

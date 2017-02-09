@@ -2,10 +2,9 @@
 
 namespace DashboardersHeaven\Exceptions;
 
-use Illuminate\Auth\AuthenticationException;
-use Bugsnag\BugsnagLaravel\BugsnagExceptionHandler as ExceptionHandler;
 use Exception;
-use Illuminate\Contracts\Validation\ValidationException;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
 {
@@ -34,10 +33,6 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $e)
     {
-        app('bugsnag')->setAppVersion(env('CURRENT_VERSION'));
-
-        app('bugsnag')->setType(app()->runningInConsole() ? 'console' : 'laravel');
-
         return parent::report($e);
     }
 
@@ -53,11 +48,13 @@ class Handler extends ExceptionHandler
     {
         return parent::render($request, $e);
     }
+
     /**
      * Convert an authentication exception into an unauthenticated response.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Illuminate\Auth\AuthenticationException  $e
+     * @param  \Illuminate\Http\Request                 $request
+     * @param  \Illuminate\Auth\AuthenticationException $e
+     *
      * @return \Illuminate\Http\Response
      */
     protected function unauthenticated($request, AuthenticationException $e)

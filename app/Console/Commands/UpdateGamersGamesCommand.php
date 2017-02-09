@@ -2,6 +2,7 @@
 
 namespace DashboardersHeaven\Console\Commands;
 
+use Carbon\Carbon;
 use DashboardersHeaven\Game;
 use DashboardersHeaven\Gamer;
 use GuzzleHttp\Client;
@@ -106,7 +107,7 @@ class UpdateGamersGamesCommand extends Command
             'earned_achievements' => data_get($title, 'earnedAchievements'),
             'current_gamerscore'  => data_get($title, 'currentGamerscore'),
             'max_gamerscore'      => data_get($title, 'maxGamerscore'),
-            'last_unlock'         => data_get($title, 'lastUnlock'),
+            'last_unlock'         => Carbon::parse(data_get($title, 'lastUnlock'))->toDateTimeString(),
         ];
     }
 }
