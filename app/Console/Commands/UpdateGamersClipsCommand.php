@@ -2,10 +2,10 @@
 
 namespace DashboardersHeaven\Console\Commands;
 
+use Bugsnag\BugsnagLaravel\Facades\Bugsnag;
 use Carbon\Carbon;
 use DashboardersHeaven\Clip;
 use DashboardersHeaven\Gamer;
-use DashboardersHeaven\Jobs\DownloadMedia;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Bus\Dispatcher;
@@ -118,6 +118,12 @@ class UpdateGamersClipsCommand extends Command
                 'xuid'    => $clipData['xuid']
             ]);
         }
+
+        Bugsnag::leaveBreadcrumb(
+            'Processed clip data',
+            \Bugsnag\Breadcrumbs\Breadcrumb::MANUAL_TYPE,
+            $clipData
+        );
 
         return $clipData;
     }
