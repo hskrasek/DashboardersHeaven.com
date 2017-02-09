@@ -124,6 +124,15 @@ class UpdateGamersClipsCommand extends Command
             ]);
         }
 
+        if (empty($clipData['url'])) {
+            unset($clipData['url']);
+            $clipData['expired'] = true;
+            \Log::notice('clip.expired', [
+                'clip_id' => $clipData['clip_id'],
+                'xuid'    => $clipData['xuid']
+            ]);
+        }
+
         Bugsnag::leaveBreadcrumb(
             'Processed clip data',
             \Bugsnag\Breadcrumbs\Breadcrumb::MANUAL_TYPE,
