@@ -81,6 +81,9 @@
                 x: 'x',
                 url: '/ajax/gamerscores/{{ $gamer->id }}',
                 mimeType: 'json',
+                onclick: function (d) {
+                    console.log('Clicked', d);
+                }
             },
             legend: {
                 show: true
@@ -93,10 +96,9 @@
                     },
                     type: 'timeseries',
                     tick: {
-                        format: '%e %b %y',
-                        rotate: 65,
+                        format: '%b %y',
                         multiline: true,
-                        fit: true
+                        fit: false
                     }
                 },
                 y: {
