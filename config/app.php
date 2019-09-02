@@ -40,7 +40,7 @@ return [
     |
     */
 
-    'url' => env('URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://localhost'),
 
     'cdn_url' => env('CDN_URL'),
     /*
@@ -150,6 +150,7 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
         Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -210,6 +211,7 @@ return [
 
         'Bugsnag'   => Bugsnag\BugsnagLaravel\BugsnagFacade::class,
         'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

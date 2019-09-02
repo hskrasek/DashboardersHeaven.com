@@ -20,7 +20,7 @@ class FlashpointBuilder extends AbstractBuilder
                 $quest->json,
                 'displayProperties.name'
             ) . "*\n\n" . data_get($milestone->json, 'displayProperties.description'),
-            Accessory::make(
+            Accessory::makeInverted(
                 'https://bungie.net' . data_get($milestone->json, 'displayProperties.icon'),
                 data_get($milestone->json, 'displayProperties.description')
             )

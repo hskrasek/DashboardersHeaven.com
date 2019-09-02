@@ -20,7 +20,7 @@ class NightfallBuilder extends AbstractBuilder
                 $milestone->json,
                 'displayProperties.name'
             ) . "*\n\n" . data_get($milestone->json, 'displayProperties.description'),
-            Accessory::make(
+            Accessory::makeInverted(
                 'https://bungie.net' . data_get($milestone->json, 'displayProperties.icon'),
                 data_get($milestone->json, 'displayProperties.description')
             )

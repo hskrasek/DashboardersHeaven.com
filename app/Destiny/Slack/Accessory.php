@@ -4,6 +4,7 @@ namespace App\Slack;
 
 use Illuminate\Support\Fluent;
 use Image;
+use Intervention\Image\ImageCache;
 
 class Accessory extends Fluent
 {
@@ -34,8 +35,12 @@ class Accessory extends Fluent
 
     public static function makeInverted(string $imageUrl, string $description): Accessory
     {
-        Image::cache(function ($image) use ($imageUrl) {
-            $image->make($imageUrl)->invert()->save(storage_path('app/public/' . basename($imageUrl)));
+        Image::cache(function (ImageCache $image) use ($imageUrl) {
+            /** @var \Intervention\Image\Image $originalImage */
+            $originalImage = Image::make($imageUrl);
+            /** @var \Intervention\Image\Image $convertedImage */
+            $convertedImage = $image->canvas($originalImage->width(), $originalImage->height(), '#0E0E0E');
+            $convertedImage->fill($originalImage)->save(storage_path('app/public/' . basename($imageUrl)));
         }, 10080, true);
 
         return new self([
