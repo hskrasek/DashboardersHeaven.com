@@ -77,7 +77,7 @@ class PostMilestones extends Command
 
         $text = 'Incoming transmission!';
 
-        if (random_int(1, 100) >= 50) {
+        if (random_int(1, 100) >= 98) {
             $text = 'Sweep sweep motherfucker';
         }
 
