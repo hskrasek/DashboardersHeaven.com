@@ -91,5 +91,6 @@ class PostMilestones extends Command
                 'blocks'  => $blocks,
             ],
         ]);
+        dd(json_decode((string) $response->getBody(), true));
     }
 }
