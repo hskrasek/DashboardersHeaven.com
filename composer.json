@@ -17,7 +17,9 @@
         "greggilbert/recaptcha": "^2.1",
         "ramsey/uuid": "^3.5",
         "laravel/tinker": "~1.0",
-        "bugsnag/bugsnag-laravel": "^2.0"
+        "bugsnag/bugsnag-laravel": "^2.0",
+        "intervention/image": "^2.5",
+        "intervention/imagecache": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -30,7 +32,8 @@
             "database"
         ],
         "psr-4": {
-            "DashboardersHeaven\\": "app/"
+            "DashboardersHeaven\\": "app/",
+            "App\\": "app/Destiny"
         },
         "files": [
             "app/Http/helpers.php"

@@ -1,5 +1,7 @@
 <?php namespace DashboardersHeaven\Console;
 
+use App\Console\Commands\PostMilestones;
+use App\Console\Commands\UpdateManifest;
 use DashboardersHeaven\Console\Commands\CreateGamerCommand;
 use DashboardersHeaven\Console\Commands\GamersCommand;
 use DashboardersHeaven\Console\Commands\UpdateGamersClipsCommand;
@@ -27,6 +29,8 @@ class Kernel extends ConsoleKernel
         UpdateGamesCommand::class,
         UpdateGamersScreenshotsCommand::class,
         \Bugsnag\BugsnagLaravel\Commands\DeployCommand::class,
+        PostMilestones::class,
+        UpdateManifest::class,
     ];
 
     /**
@@ -38,6 +42,16 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('destiny:milestones')
+            ->weeklyOn(2, '12:30')
+            ->timezone('America/Chicago')
+            ->withoutOverlapping();
+
+        $schedule->command('destiny:manifest', ['--force'])
+            ->everyThirtyMinutes()
+            ->timezone('America/Chicago')
+            ->withoutOverlapping();
+
         $gamers = Gamer::all();
         foreach ($gamers as $gamer) {
             $safeGamertag = str_replace(' ', '_', $gamer->gamertag);
