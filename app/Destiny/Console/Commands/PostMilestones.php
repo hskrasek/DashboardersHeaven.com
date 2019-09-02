@@ -86,7 +86,8 @@ class PostMilestones extends Command
                 'Authorization' => 'Bearer ' . env('SLACK_API_TOKEN'),
             ],
             'json'    => [
-                'channel' => 'G622FQ124',
+                // 'channel' => 'G622FQ124',
+                'channel' => 'C70TKFLKZ',
                 'text'    => $text,
                 'blocks'  => $blocks,
             ],
