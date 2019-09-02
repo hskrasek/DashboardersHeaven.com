@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 
+use App\Slack\Builder\XurBuilder;
 use App\Slack\Builder\{FlashpointBuilder, NightfallBuilder, ReckoningBuilder, WeeklyStrikeBurnsBuilder};
 
 return [
@@ -30,6 +31,6 @@ return [
         '3448738070' => false,//'Weekly Gambit'
         '2010672046' => false,//'Weekly Gambit Prime'
         '601087286' => ReckoningBuilder::class,
-        '534869653' => false,//Xur
+        '534869653' => XurBuilder::class,
     ],
 ];

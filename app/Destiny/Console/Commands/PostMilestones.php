@@ -13,7 +13,9 @@ class PostMilestones extends Command
      *
      * @var string
      */
-    protected $signature = 'destiny:milestones {--debug : Dump the attachments instead of sending to Slack}';
+    protected $signature = 'destiny:milestones 
+                            {--debug : Dump the attachments instead of sending to Slack}
+                            {--milestone= : Filter which milestone is posted}';
 
     /**
      * The console command description.
@@ -53,7 +55,13 @@ class PostMilestones extends Command
     {
         $milestones = $this->client->getMilestones();
 
-        $blocks = $this->blockBuilder->buildForMilestones($milestones->toArray());
+        if ($hash = $this->option('milestone')) {
+            $milestones = $milestones->filter(function ($milestone) use ($hash) {
+                return $milestone['milestoneHash'] == $hash;
+            });
+        }
+
+        $blocks = collect($this->blockBuilder->buildForMilestones($milestones->toArray()));
 
         // foreach ($salesItems as $index => $item) {
         //     $itemsForSale[] = InventoryItem::where('id', $item['itemHash'])->orWhere(
@@ -64,7 +72,7 @@ class PostMilestones extends Command
 
         if ($this->option('debug')) {
             $this->line('Dumping blocks');
-            dd(collect($blocks)->toArray());
+            dd($blocks->toArray());
         }
 
         $text = 'Incoming transmission!';

@@ -10,7 +10,7 @@ abstract class AbstractBuilder
     /**
      * @var Client
      */
-    private $client;
+    protected $client;
 
     public function __construct(Client $client)
     {
