@@ -52,6 +52,11 @@ class Kernel extends ConsoleKernel
             ->timezone('America/Chicago')
             ->withoutOverlapping();
 
+        $schedule->command('destiny:milestones', ['--milestone' => 534869653])
+            ->weeklyOn(5, '12:30')
+            ->timezone('America/Chicago')
+            ->withoutOverlapping();
+
         $gamers = Gamer::all();
         foreach ($gamers as $gamer) {
             $safeGamertag = str_replace(' ', '_', $gamer->gamertag);
