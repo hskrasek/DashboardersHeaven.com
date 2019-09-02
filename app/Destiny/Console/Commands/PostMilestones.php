@@ -67,13 +67,19 @@ class PostMilestones extends Command
             dd(collect($blocks)->toArray());
         }
 
+        $text = 'Incoming transmission!';
+
+        if (random_int(1, 100) >= 50) {
+            $text = 'Sweep sweep motherfucker';
+        }
+
         $response = (new \GuzzleHttp\Client())->post('https://slack.com/api/chat.postMessage', [
             'headers' => [
                 'Authorization' => 'Bearer ' . env('SLACK_API_TOKEN'),
             ],
             'json'    => [
                 'channel' => 'G622FQ124',
-                'text'    => 'Incoming transmission!',
+                'text'    => $text,
                 'blocks'  => $blocks,
             ],
         ]);
