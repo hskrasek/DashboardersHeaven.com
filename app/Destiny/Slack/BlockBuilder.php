@@ -36,7 +36,7 @@ class BlockBuilder
             $builderClass = array_get($this->milestoneMapping, $hash);
 
             if ($builderClass === null) {
-                \Bugsnag::notifyError(
+                $this->container->make('bugsnag')->notifyError(
                     'UnmappedMilestoneException',
                     'A milestone has been encountered that is not currently mapped',
                     function ($report) use ($hash) {
