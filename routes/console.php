@@ -16,3 +16,17 @@ use Illuminate\Foundation\Inspiring;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+Artisan::command('destiny:signoff', function () {
+    $response = (new \GuzzleHttp\Client())->post('https://slack.com/api/chat.postMessage', [
+        'headers' => [
+            'Authorization' => 'Bearer ' . env('SLACK_API_TOKEN'),
+        ],
+        'json'    => [
+            // 'channel' => 'G622FQ124',
+            'channel' => 'C70TKFLKZ',
+            'text'    => 'My battery is low and it\'s getting dark. Goodbye',
+        ],
+    ]);
+    dd(json_decode((string) $response->getBody(), true));
+});
