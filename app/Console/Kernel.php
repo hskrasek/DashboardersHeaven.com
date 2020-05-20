@@ -42,20 +42,20 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('destiny:milestones')
-            ->weeklyOn(2, '12:30')
-            ->timezone('America/Chicago')
-            ->withoutOverlapping();
+        // $schedule->command('destiny:milestones')
+        //     ->weeklyOn(2, '12:30')
+        //     ->timezone('America/Chicago')
+        //     ->withoutOverlapping();
 
         $schedule->command('destiny:manifest', ['--force'])
             ->everyThirtyMinutes()
             ->timezone('America/Chicago')
             ->withoutOverlapping();
 
-        $schedule->command('destiny:milestones', ['--milestone' => 534869653])
-            ->weeklyOn(5, '12:30')
-            ->timezone('America/Chicago')
-            ->withoutOverlapping();
+        // $schedule->command('destiny:milestones', ['--milestone' => 534869653])
+        //     ->weeklyOn(5, '12:30')
+        //     ->timezone('America/Chicago')
+        //     ->withoutOverlapping();
 
         $gamers = Gamer::all();
         foreach ($gamers as $gamer) {
